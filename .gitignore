@@ -1,3 +1,11 @@
 .DS_Store
 *.log
 node_modules/
+*.key.tmp
+oai.key.tmp
+xai.key.tmp
+_gen_*.py
+sjoerd-pub.json
+sjoerd-create.json
+sjoerd-img.json
+Dockerfile.sjoerd*

@@ -1,4 +1,8 @@
 FROM nginx:alpine
+
+# Copy site root + images directory
 COPY index.html /usr/share/nginx/html/index.html
-# Optional: custom nginx config for SPA-style (not needed for single static page)
+COPY images /usr/share/nginx/html/images
+
+# Disable nginx access log noise (optional)
 EXPOSE 80

@@ -938,6 +938,39 @@ svg.sjoerd-mark {
     opacity: 0.85;
 }
 
+.dish-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.8s var(--ease-out), filter 0.6s ease;
+    filter: saturate(0.95) brightness(0.92);
+}
+
+.dish:hover .dish-img {
+    transform: scale(1.06);
+    filter: saturate(1.05) brightness(1);
+}
+
+.dish-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+        rgba(10, 13, 18, 0.25) 0%,
+        rgba(10, 13, 18, 0) 35%,
+        rgba(10, 13, 18, 0) 65%,
+        rgba(10, 13, 18, 0.45) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.dish-number, .dish-tag {
+    z-index: 2;
+}
+
 .dish-number {
     position: absolute;
     top: 1rem;
@@ -1261,6 +1294,33 @@ svg.sjoerd-mark {
     height: 60%;
     opacity: 0.7;
     transition: transform 0.6s var(--ease-out);
+}
+
+.gallery-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.8s var(--ease-out), filter 0.6s ease;
+    filter: saturate(0.9) brightness(0.85);
+}
+
+.gallery-item:hover .gallery-img {
+    transform: scale(1.08);
+    filter: saturate(1) brightness(1);
+}
+
+.gallery-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+        rgba(10, 13, 18, 0.2) 0%,
+        rgba(10, 13, 18, 0.55) 100%);
+    pointer-events: none;
+    z-index: 1;
 }
 
 .gallery-item::after {
@@ -2442,16 +2502,7 @@ svg.sjoerd-mark {
                 <div class="dish-visual">
                     <div class="dish-number">N° 01</div>
                     <div class="dish-tag">Signature</div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="100" y1="30" x2="100" y2="170" stroke="#c9a961" stroke-width="2"/>
-                        <ellipse cx="100" cy="50" rx="18" ry="14" fill="#a0492a" opacity="0.85"/>
-                        <ellipse cx="100" cy="50" rx="18" ry="14" fill="none" stroke="#c9a961" stroke-width="0.8"/>
-                        <path d="M80 100 Q100 80 120 100 Q120 120 100 125 Q80 120 80 100" fill="#8a7340" opacity="0.7"/>
-                        <path d="M80 100 Q100 80 120 100 Q120 120 100 125 Q80 120 80 100" fill="none" stroke="#c9a961" stroke-width="0.8"/>
-                        <ellipse cx="100" cy="150" rx="14" ry="18" fill="#5d8a3a" opacity="0.7"/>
-                        <ellipse cx="100" cy="150" rx="14" ry="18" fill="none" stroke="#c9a961" stroke-width="0.8"/>
-                        <circle cx="95" cy="148" r="2" fill="#c9a961"/>
-                    </svg>
+                    <img src="images/dishes/01.jpg" alt="Pintxo N° 01" loading="lazy" class="dish-img">
                 </div>
                 <div class="dish-body">
                     <div class="dish-header">
@@ -2470,17 +2521,7 @@ svg.sjoerd-mark {
                 <div class="dish-visual">
                     <div class="dish-number">N° 02</div>
                     <div class="dish-tag">Signature</div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <ellipse cx="100" cy="100" rx="80" ry="50" fill="#1a1424" stroke="#c9a961" stroke-width="1"/>
-                        <ellipse cx="100" cy="100" rx="60" ry="35" fill="#e8c878" opacity="0.85"/>
-                        <path d="M70 95 Q100 80 130 95 L130 110 Q100 120 70 110 Z" fill="#f4ebd9" opacity="0.9"/>
-                        <path d="M70 95 Q100 80 130 95 L130 110 Q100 120 70 110 Z" fill="none" stroke="#c9a961" stroke-width="0.8"/>
-                        <circle cx="80" cy="105" r="2" fill="#a0492a"/>
-                        <circle cx="120" cy="100" r="2" fill="#a0492a"/>
-                        <circle cx="100" cy="90" r="1.5" fill="#a0492a"/>
-                        <ellipse cx="60" cy="115" rx="3" ry="2" fill="#5d8a3a"/>
-                        <ellipse cx="140" cy="115" rx="3" ry="2" fill="#5d8a3a"/>
-                    </svg>
+                    <img src="images/dishes/02.jpg" alt="Pintxo N° 02" loading="lazy" class="dish-img">
                 </div>
                 <div class="dish-body">
                     <div class="dish-header">
@@ -2498,21 +2539,7 @@ svg.sjoerd-mark {
             <article class="dish" data-category="zee" data-name="Pulpo a la Brasa" data-price="14.5">
                 <div class="dish-visual">
                     <div class="dish-number">N° 03</div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <ellipse cx="100" cy="80" rx="35" ry="25" fill="#a0492a" opacity="0.9"/>
-                        <ellipse cx="100" cy="80" rx="35" ry="25" fill="none" stroke="#c9a961" stroke-width="1"/>
-                        <path d="M75 95 Q60 130 50 150" stroke="#a0492a" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
-                        <path d="M85 100 Q70 140 65 165" stroke="#a0492a" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
-                        <path d="M115 100 Q130 140 135 165" stroke="#a0492a" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
-                        <path d="M125 95 Q140 130 150 150" stroke="#a0492a" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
-                        <circle cx="55" cy="155" r="2" fill="#c9a961"/>
-                        <circle cx="68" cy="170" r="2" fill="#c9a961"/>
-                        <circle cx="132" cy="170" r="2" fill="#c9a961"/>
-                        <circle cx="145" cy="155" r="2" fill="#c9a961"/>
-                        <circle cx="92" cy="75" r="2" fill="#0a0d12"/>
-                        <circle cx="108" cy="75" r="2" fill="#0a0d12"/>
-                        <ellipse cx="100" cy="40" rx="40" ry="3" fill="#c9a961" opacity="0.3"/>
-                    </svg>
+                    <img src="images/dishes/03.jpg" alt="Pintxo N° 03" loading="lazy" class="dish-img">
                 </div>
                 <div class="dish-body">
                     <div class="dish-header">
@@ -2531,15 +2558,7 @@ svg.sjoerd-mark {
                 <div class="dish-visual">
                     <div class="dish-number">N° 04</div>
                     <div class="dish-tag">Signature</div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M40 80 Q40 60 60 60 L140 60 Q160 60 160 80 L160 130 Q160 150 140 150 L60 150 Q40 150 40 130 Z" fill="#a0492a" opacity="0.9"/>
-                        <path d="M40 80 Q40 60 60 60 L140 60 Q160 60 160 80 L160 130 Q160 150 140 150 L60 150 Q40 150 40 130 Z" fill="none" stroke="#c9a961" stroke-width="1.5"/>
-                        <path d="M55 70 Q70 80 55 90 M55 95 Q72 105 55 115 M55 120 Q70 130 55 140" stroke="#5a2818" stroke-width="2" fill="none" opacity="0.7"/>
-                        <path d="M145 70 Q130 80 145 90 M145 95 Q128 105 145 115 M145 120 Q130 130 145 140" stroke="#5a2818" stroke-width="2" fill="none" opacity="0.7"/>
-                        <ellipse cx="100" cy="105" rx="30" ry="20" fill="#f4ebd9" opacity="0.4"/>
-                        <circle cx="80" cy="95" r="3" fill="#c9a961" opacity="0.7"/>
-                        <circle cx="120" cy="110" r="2" fill="#c9a961" opacity="0.7"/>
-                    </svg>
+                    <img src="images/dishes/04.jpg" alt="Pintxo N° 04" loading="lazy" class="dish-img">
                 </div>
                 <div class="dish-body">
                     <div class="dish-header">
@@ -2557,20 +2576,7 @@ svg.sjoerd-mark {
             <article class="dish" data-category="land" data-name="Croqueta de Jamón Ibérico" data-price="7.5">
                 <div class="dish-visual">
                     <div class="dish-number">N° 05</div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <ellipse cx="80" cy="100" rx="32" ry="22" fill="#c9a961" opacity="0.9"/>
-                        <ellipse cx="80" cy="100" rx="32" ry="22" fill="none" stroke="#a0492a" stroke-width="1"/>
-                        <ellipse cx="80" cy="95" rx="25" ry="15" fill="#e8c878" opacity="0.7"/>
-                        <circle cx="65" cy="90" r="1.5" fill="#a0492a"/>
-                        <circle cx="95" cy="105" r="1.5" fill="#a0492a"/>
-                        <circle cx="80" cy="100" r="1" fill="#a0492a"/>
-                        <ellipse cx="130" cy="115" rx="30" ry="20" fill="#c9a961" opacity="0.9"/>
-                        <ellipse cx="130" cy="115" rx="30" ry="20" fill="none" stroke="#a0492a" stroke-width="1"/>
-                        <ellipse cx="130" cy="110" rx="22" ry="13" fill="#e8c878" opacity="0.7"/>
-                        <circle cx="120" cy="108" r="1.5" fill="#a0492a"/>
-                        <circle cx="140" cy="118" r="1.5" fill="#a0492a"/>
-                        <path d="M50 140 Q100 150 160 140" stroke="#c9a961" stroke-width="0.8" fill="none" opacity="0.4"/>
-                    </svg>
+                    <img src="images/dishes/05.jpg" alt="Pintxo N° 05" loading="lazy" class="dish-img">
                 </div>
                 <div class="dish-body">
                     <div class="dish-header">
@@ -2588,18 +2594,7 @@ svg.sjoerd-mark {
             <article class="dish" data-category="land" data-name="Chorizo a la Sidra" data-price="9.0">
                 <div class="dish-visual">
                     <div class="dish-number">N° 06</div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 100 Q50 80 70 80 L130 80 Q150 80 150 100 L150 110 Q150 130 130 130 L70 130 Q50 130 50 110 Z" fill="#a0492a"/>
-                        <path d="M50 100 Q50 80 70 80 L130 80 Q150 80 150 100 L150 110 Q150 130 130 130 L70 130 Q50 130 50 110 Z" fill="none" stroke="#c9a961" stroke-width="1.2"/>
-                        <ellipse cx="75" cy="100" rx="3" ry="4" fill="#5a2818"/>
-                        <ellipse cx="100" cy="95" rx="2" ry="3" fill="#5a2818"/>
-                        <ellipse cx="125" cy="105" rx="3" ry="4" fill="#5a2818"/>
-                        <ellipse cx="90" cy="115" rx="2" ry="3" fill="#5a2818"/>
-                        <ellipse cx="115" cy="115" rx="2" ry="3" fill="#5a2818"/>
-                        <path d="M100 60 Q90 50 95 40 Q100 45 100 55" stroke="#c9a961" stroke-width="1.5" fill="none" opacity="0.6"/>
-                        <path d="M110 65 Q120 55 115 45 Q110 50 110 60" stroke="#c9a961" stroke-width="1.5" fill="none" opacity="0.6"/>
-                        <path d="M40 145 Q100 160 160 145" stroke="#c9a961" stroke-width="0.8" fill="none" opacity="0.5"/>
-                    </svg>
+                    <img src="images/dishes/06.jpg" alt="Pintxo N° 06" loading="lazy" class="dish-img">
                 </div>
                 <div class="dish-body">
                     <div class="dish-header">
@@ -2617,19 +2612,7 @@ svg.sjoerd-mark {
             <article class="dish" data-category="groen" data-name="Pimientos de Padrón" data-price="7.0">
                 <div class="dish-visual">
                     <div class="dish-number">N° 07</div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M70 60 Q60 100 75 140 Q90 145 95 130 Q90 100 85 70 Z" fill="#3a6024" stroke="#c9a961" stroke-width="0.8"/>
-                        <path d="M110 70 Q100 110 110 150 Q125 152 130 137 Q125 110 120 80 Z" fill="#4a7028" stroke="#c9a961" stroke-width="0.8"/>
-                        <path d="M140 55 Q132 100 145 145 Q160 147 162 130 Q158 100 152 65 Z" fill="#3a6024" stroke="#c9a961" stroke-width="0.8"/>
-                        <path d="M50 55 Q42 95 55 140 Q70 142 72 125 Q68 95 62 65 Z" fill="#4a7028" stroke="#c9a961" stroke-width="0.8"/>
-                        <ellipse cx="77" cy="55" rx="8" ry="3" fill="#2a4818"/>
-                        <ellipse cx="115" cy="65" rx="8" ry="3" fill="#2a4818"/>
-                        <ellipse cx="146" cy="50" rx="8" ry="3" fill="#2a4818"/>
-                        <ellipse cx="56" cy="50" rx="8" ry="3" fill="#2a4818"/>
-                        <circle cx="170" cy="80" r="2" fill="#f4ebd9" opacity="0.7"/>
-                        <circle cx="35" cy="100" r="2" fill="#f4ebd9" opacity="0.7"/>
-                        <circle cx="180" cy="130" r="1.5" fill="#f4ebd9" opacity="0.5"/>
-                    </svg>
+                    <img src="images/dishes/07.jpg" alt="Pintxo N° 07" loading="lazy" class="dish-img">
                 </div>
                 <div class="dish-body">
                     <div class="dish-header">
@@ -2647,19 +2630,7 @@ svg.sjoerd-mark {
             <article class="dish" data-category="groen" data-name="Tortilla de Patatas" data-price="8.0">
                 <div class="dish-visual">
                     <div class="dish-number">N° 08</div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <ellipse cx="100" cy="100" rx="65" ry="40" fill="#e8c878" stroke="#c9a961" stroke-width="1.2"/>
-                        <ellipse cx="100" cy="92" rx="60" ry="35" fill="#f4ebd9" opacity="0.6"/>
-                        <ellipse cx="80" cy="90" rx="6" ry="4" fill="#c9a961" opacity="0.7"/>
-                        <ellipse cx="115" cy="100" rx="7" ry="5" fill="#c9a961" opacity="0.7"/>
-                        <ellipse cx="95" cy="105" rx="5" ry="4" fill="#c9a961" opacity="0.7"/>
-                        <ellipse cx="130" cy="90" rx="4" ry="3" fill="#c9a961" opacity="0.7"/>
-                        <ellipse cx="70" cy="100" rx="4" ry="3" fill="#c9a961" opacity="0.7"/>
-                        <circle cx="90" cy="95" r="1" fill="#5a4018"/>
-                        <circle cx="110" cy="105" r="1" fill="#5a4018"/>
-                        <circle cx="120" cy="93" r="1" fill="#5a4018"/>
-                        <path d="M50 145 Q100 155 150 145" stroke="#c9a961" stroke-width="0.6" fill="none" opacity="0.5"/>
-                    </svg>
+                    <img src="images/dishes/08.jpg" alt="Pintxo N° 08" loading="lazy" class="dish-img">
                 </div>
                 <div class="dish-body">
                     <div class="dish-header">
@@ -2677,19 +2648,7 @@ svg.sjoerd-mark {
             <article class="dish" data-category="zee" data-name="Gambas al Ajillo" data-price="11.0">
                 <div class="dish-visual">
                     <div class="dish-number">N° 09</div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <ellipse cx="100" cy="110" rx="70" ry="35" fill="#1a1424" stroke="#c9a961" stroke-width="1"/>
-                        <ellipse cx="100" cy="105" rx="60" ry="25" fill="#a0492a" opacity="0.3"/>
-                        <path d="M70 100 Q80 95 90 100 L95 110 Q90 115 80 115 Q70 110 70 100 M70 100 L60 90" fill="#d4673a" stroke="#c9a961" stroke-width="0.8"/>
-                        <path d="M105 95 Q115 90 125 95 L130 105 Q125 110 115 110 Q105 105 105 95 M125 95 L135 85" fill="#d4673a" stroke="#c9a961" stroke-width="0.8"/>
-                        <path d="M85 115 Q95 110 105 115 L110 125 Q105 130 95 130 Q85 125 85 115 M85 115 L75 125" fill="#d4673a" stroke="#c9a961" stroke-width="0.8"/>
-                        <circle cx="78" cy="100" r="1" fill="#0a0d12"/>
-                        <circle cx="115" cy="98" r="1" fill="#0a0d12"/>
-                        <circle cx="93" cy="118" r="1" fill="#0a0d12"/>
-                        <ellipse cx="50" cy="95" rx="3" ry="2" fill="#f4ebd9" opacity="0.8"/>
-                        <ellipse cx="150" cy="115" rx="3" ry="2" fill="#f4ebd9" opacity="0.8"/>
-                        <ellipse cx="155" cy="90" rx="2" ry="1.5" fill="#f4ebd9" opacity="0.8"/>
-                    </svg>
+                    <img src="images/dishes/09.jpg" alt="Pintxo N° 09" loading="lazy" class="dish-img">
                 </div>
                 <div class="dish-body">
                     <div class="dish-header">
@@ -2707,17 +2666,7 @@ svg.sjoerd-mark {
             <article class="dish" data-category="groen" data-name="Piquillos Rellenos" data-price="9.5">
                 <div class="dish-visual">
                     <div class="dish-number">N° 10</div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M60 80 Q50 100 60 130 Q70 145 100 145 Q130 145 140 130 Q150 100 140 80 Q130 65 100 65 Q70 65 60 80 Z" fill="#a0492a" stroke="#c9a961" stroke-width="1.2"/>
-                        <ellipse cx="100" cy="105" rx="22" ry="25" fill="#f4ebd9" opacity="0.85"/>
-                        <ellipse cx="100" cy="105" rx="22" ry="25" fill="none" stroke="#c9a961" stroke-width="0.6"/>
-                        <circle cx="95" cy="100" r="2" fill="#5a4018"/>
-                        <circle cx="105" cy="108" r="1.5" fill="#5a4018"/>
-                        <circle cx="98" cy="115" r="1.5" fill="#5a4018"/>
-                        <path d="M95 55 Q100 45 105 55" stroke="#3a6024" stroke-width="2" fill="none"/>
-                        <ellipse cx="100" cy="55" rx="3" ry="2" fill="#3a6024"/>
-                        <path d="M40 155 Q100 165 160 155" stroke="#c9a961" stroke-width="0.8" fill="none" opacity="0.5"/>
-                    </svg>
+                    <img src="images/dishes/10.jpg" alt="Pintxo N° 10" loading="lazy" class="dish-img">
                 </div>
                 <div class="dish-body">
                     <div class="dish-header">
@@ -2736,18 +2685,7 @@ svg.sjoerd-mark {
                 <div class="dish-visual">
                     <div class="dish-number">N° 11</div>
                     <div class="dish-tag">Signature</div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <ellipse cx="100" cy="110" rx="55" ry="40" fill="#a0492a" stroke="#c9a961" stroke-width="1.2"/>
-                        <ellipse cx="100" cy="100" rx="45" ry="30" fill="#d4673a" opacity="0.85"/>
-                        <path d="M55 100 L40 90 M55 105 L40 110 M145 100 L160 90 M145 105 L160 110" stroke="#a0492a" stroke-width="3" stroke-linecap="round"/>
-                        <path d="M60 75 Q50 60 55 50 M75 70 Q70 55 78 45" stroke="#a0492a" stroke-width="2" fill="none"/>
-                        <path d="M140 75 Q150 60 145 50 M125 70 Q130 55 122 45" stroke="#a0492a" stroke-width="2" fill="none"/>
-                        <circle cx="85" cy="100" r="2" fill="#f4ebd9"/>
-                        <circle cx="115" cy="100" r="2" fill="#f4ebd9"/>
-                        <ellipse cx="80" cy="115" rx="3" ry="2" fill="#f4ebd9" opacity="0.6"/>
-                        <ellipse cx="120" cy="115" rx="3" ry="2" fill="#f4ebd9" opacity="0.6"/>
-                        <path d="M40 155 Q100 165 160 155" stroke="#c9a961" stroke-width="0.8" fill="none" opacity="0.5"/>
-                    </svg>
+                    <img src="images/dishes/11.jpg" alt="Pintxo N° 11" loading="lazy" class="dish-img">
                 </div>
                 <div class="dish-body">
                     <div class="dish-header">
@@ -2766,20 +2704,7 @@ svg.sjoerd-mark {
                 <div class="dish-visual">
                     <div class="dish-number">N° 12</div>
                     <div class="dish-tag">Dessert</div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M60 90 L140 90 L130 150 L70 150 Z" fill="#e8c878" stroke="#a0492a" stroke-width="1.5"/>
-                        <ellipse cx="100" cy="90" rx="40" ry="8" fill="#5a2818"/>
-                        <ellipse cx="100" cy="88" rx="38" ry="6" fill="#a0492a" opacity="0.85"/>
-                        <ellipse cx="100" cy="86" rx="35" ry="4" fill="#d4673a" opacity="0.7"/>
-                        <path d="M70 100 L130 100" stroke="#c9a961" stroke-width="0.5" opacity="0.5"/>
-                        <path d="M72 110 L128 110" stroke="#c9a961" stroke-width="0.5" opacity="0.4"/>
-                        <path d="M74 120 L126 120" stroke="#c9a961" stroke-width="0.5" opacity="0.3"/>
-                        <circle cx="85" cy="84" r="1.5" fill="#0a0d12"/>
-                        <circle cx="110" cy="86" r="1.5" fill="#0a0d12"/>
-                        <circle cx="100" cy="83" r="1" fill="#0a0d12"/>
-                        <ellipse cx="60" cy="155" rx="20" ry="3" fill="#000" opacity="0.3"/>
-                        <ellipse cx="140" cy="155" rx="20" ry="3" fill="#000" opacity="0.3"/>
-                    </svg>
+                    <img src="images/dishes/12.jpg" alt="Pintxo N° 12" loading="lazy" class="dish-img">
                 </div>
                 <div class="dish-body">
                     <div class="dish-header">
@@ -2798,16 +2723,7 @@ svg.sjoerd-mark {
                 <div class="dish-visual">
                     <div class="dish-number">N° 13</div>
                     <div class="dish-tag">Signature</div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <ellipse cx="100" cy="100" rx="70" ry="48" fill="#e8c878"/>
-                        <ellipse cx="100" cy="100" rx="70" ry="48" fill="none" stroke="#c9a961" stroke-width="1.2"/>
-                        <ellipse cx="100" cy="95" rx="62" ry="36" fill="#f4ebd9" opacity="0.6"/>
-                        <ellipse cx="80" cy="92" rx="8" ry="4" fill="#c9a961" opacity="0.7"/>
-                        <ellipse cx="120" cy="100" rx="6" ry="3.5" fill="#c9a961" opacity="0.7"/>
-                        <ellipse cx="95" cy="108" rx="7" ry="3" fill="#c9a961" opacity="0.6"/>
-                        <path d="M 35 105 Q 100 130 165 105" stroke="#a0492a" stroke-width="0.8" fill="none" opacity="0.4"/>
-                        <ellipse cx="100" cy="140" rx="55" ry="4" fill="#000" opacity="0.25"/>
-                    </svg>
+                    <img src="images/dishes/13.jpg" alt="Pintxo N° 13" loading="lazy" class="dish-img">
                 </div>
                 <div class="dish-body">
                     <div class="dish-header">
@@ -2825,17 +2741,7 @@ svg.sjoerd-mark {
             <article class="dish" data-category="land" data-name="Carrillera al Tinto" data-price="13.5">
                 <div class="dish-visual">
                     <div class="dish-number">N° 14</div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <ellipse cx="100" cy="110" rx="62" ry="28" fill="#1a1424" stroke="#c9a961" stroke-width="0.8"/>
-                        <ellipse cx="100" cy="105" rx="54" ry="22" fill="#5a2818"/>
-                        <path d="M 60 105 Q 80 90 110 95 Q 140 100 145 115 Q 130 125 95 122 Q 65 118 60 105 Z" fill="#a0492a" opacity="0.9"/>
-                        <path d="M 75 100 Q 95 95 115 100" stroke="#c9a961" stroke-width="0.6" fill="none" opacity="0.6"/>
-                        <path d="M 85 110 Q 105 113 130 110" stroke="#c9a961" stroke-width="0.6" fill="none" opacity="0.5"/>
-                        <circle cx="80" cy="100" r="2" fill="#3a6024" opacity="0.8"/>
-                        <circle cx="120" cy="112" r="2" fill="#3a6024" opacity="0.8"/>
-                        <circle cx="100" cy="105" r="1.5" fill="#c9a961" opacity="0.9"/>
-                        <ellipse cx="100" cy="138" rx="50" ry="3" fill="#000" opacity="0.3"/>
-                    </svg>
+                    <img src="images/dishes/14.jpg" alt="Pintxo N° 14" loading="lazy" class="dish-img">
                 </div>
                 <div class="dish-body">
                     <div class="dish-header">
@@ -2854,18 +2760,7 @@ svg.sjoerd-mark {
                 <div class="dish-visual">
                     <div class="dish-number">N° 15</div>
                     <div class="dish-tag">Signature</div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M 55 75 L 135 70 L 145 130 L 65 135 Z" fill="#e8c878" stroke="#c9a961" stroke-width="1.2"/>
-                        <path d="M 55 75 L 135 70 L 135 78 L 55 83 Z" fill="#c9a961" opacity="0.6"/>
-                        <path d="M 60 90 L 130 87" stroke="#a0492a" stroke-width="0.4" opacity="0.3"/>
-                        <path d="M 62 105 L 132 102" stroke="#a0492a" stroke-width="0.4" opacity="0.3"/>
-                        <circle cx="75" cy="100" r="1.5" fill="#a0492a" opacity="0.4"/>
-                        <circle cx="110" cy="95" r="1.5" fill="#a0492a" opacity="0.4"/>
-                        <path d="M 100 75 Q 95 60 110 55 Q 125 55 130 70" fill="#a0492a" opacity="0.7"/>
-                        <path d="M 100 75 Q 95 60 110 55 Q 125 55 130 70" fill="none" stroke="#c9a961" stroke-width="0.5"/>
-                        <ellipse cx="115" cy="62" rx="2" ry="3" fill="#5a2818" opacity="0.5"/>
-                        <ellipse cx="100" cy="148" rx="45" ry="3" fill="#000" opacity="0.25"/>
-                    </svg>
+                    <img src="images/dishes/15.jpg" alt="Pintxo N° 15" loading="lazy" class="dish-img">
                 </div>
                 <div class="dish-body">
                     <div class="dish-header">
@@ -2883,21 +2778,7 @@ svg.sjoerd-mark {
             <article class="dish" data-category="zee" data-name="Boquerones en Vinagre" data-price="7.5">
                 <div class="dish-visual">
                     <div class="dish-number">N° 16</div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <ellipse cx="100" cy="110" rx="65" ry="20" fill="#f4ebd9" opacity="0.15" stroke="#c9a961" stroke-width="0.5"/>
-                        <ellipse cx="70" cy="95" rx="22" ry="5" fill="#f4ebd9" stroke="#c9a961" stroke-width="0.6"/>
-                        <ellipse cx="100" cy="105" rx="24" ry="5" fill="#f4ebd9" stroke="#c9a961" stroke-width="0.6"/>
-                        <ellipse cx="130" cy="100" rx="22" ry="5" fill="#f4ebd9" stroke="#c9a961" stroke-width="0.6"/>
-                        <ellipse cx="85" cy="115" rx="20" ry="4.5" fill="#f4ebd9" stroke="#c9a961" stroke-width="0.6"/>
-                        <ellipse cx="120" cy="118" rx="22" ry="4.5" fill="#f4ebd9" stroke="#c9a961" stroke-width="0.6"/>
-                        <line x1="50" y1="95" x2="92" y2="95" stroke="#a0492a" stroke-width="0.3" opacity="0.5"/>
-                        <line x1="76" y1="105" x2="124" y2="105" stroke="#a0492a" stroke-width="0.3" opacity="0.5"/>
-                        <line x1="108" y1="100" x2="152" y2="100" stroke="#a0492a" stroke-width="0.3" opacity="0.5"/>
-                        <circle cx="55" cy="80" r="2" fill="#3a6024" opacity="0.8"/>
-                        <circle cx="145" cy="82" r="2" fill="#3a6024" opacity="0.8"/>
-                        <circle cx="100" cy="75" r="1.5" fill="#3a6024" opacity="0.7"/>
-                        <ellipse cx="100" cy="135" rx="55" ry="3" fill="#000" opacity="0.25"/>
-                    </svg>
+                    <img src="images/dishes/16.jpg" alt="Pintxo N° 16" loading="lazy" class="dish-img">
                 </div>
                 <div class="dish-body">
                     <div class="dish-header">
@@ -2915,20 +2796,7 @@ svg.sjoerd-mark {
             <article class="dish" data-category="groen" data-name="Setas a la Plancha" data-price="8.0">
                 <div class="dish-visual">
                     <div class="dish-number">N° 17</div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M 55 95 Q 55 70 85 70 Q 115 70 115 95 Q 115 105 105 110 L 65 110 Q 55 105 55 95 Z" fill="#8a7340" opacity="0.9"/>
-                        <path d="M 55 95 Q 55 70 85 70 Q 115 70 115 95 Q 115 105 105 110 L 65 110 Q 55 105 55 95 Z" fill="none" stroke="#c9a961" stroke-width="0.8"/>
-                        <rect x="78" y="110" width="14" height="30" fill="#c9a961" opacity="0.5"/>
-                        <path d="M 100 105 Q 100 80 130 80 Q 160 80 160 110 Q 160 120 145 125 L 110 125 Q 100 118 100 105 Z" fill="#5a2818" opacity="0.85"/>
-                        <path d="M 100 105 Q 100 80 130 80 Q 160 80 160 110 Q 160 120 145 125 L 110 125 Q 100 118 100 105 Z" fill="none" stroke="#c9a961" stroke-width="0.8"/>
-                        <rect x="125" y="125" width="12" height="22" fill="#c9a961" opacity="0.5"/>
-                        <circle cx="75" cy="85" r="1.5" fill="#5a2818" opacity="0.7"/>
-                        <circle cx="95" cy="90" r="1.5" fill="#5a2818" opacity="0.7"/>
-                        <circle cx="125" cy="95" r="1.5" fill="#0a0d12" opacity="0.7"/>
-                        <circle cx="145" cy="100" r="1.5" fill="#0a0d12" opacity="0.7"/>
-                        <path d="M 45 155 L 165 155" stroke="#c9a961" stroke-width="0.6" opacity="0.3"/>
-                        <path d="M 60 160 L 75 162 L 90 158 L 105 161 L 120 159 L 135 162 L 150 158" stroke="#3a6024" stroke-width="0.8" fill="none" opacity="0.5"/>
-                    </svg>
+                    <img src="images/dishes/17.jpg" alt="Pintxo N° 17" loading="lazy" class="dish-img">
                 </div>
                 <div class="dish-body">
                     <div class="dish-header">
@@ -2947,19 +2815,7 @@ svg.sjoerd-mark {
                 <div class="dish-visual">
                     <div class="dish-number">N° 18</div>
                     <div class="dish-tag">Dessert</div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="55" y="75" width="90" height="80" rx="3" fill="#1a1424" stroke="#c9a961" stroke-width="0.8"/>
-                        <rect x="58" y="78" width="84" height="22" fill="#5a2818" opacity="0.9"/>
-                        <rect x="58" y="100" width="84" height="25" fill="#f4ebd9" opacity="0.95"/>
-                        <rect x="58" y="125" width="84" height="27" fill="#c9a961" opacity="0.85"/>
-                        <path d="M 58 125 Q 75 120 100 125 Q 125 130 142 125" stroke="#a0492a" stroke-width="0.8" fill="none" opacity="0.7"/>
-                        <path d="M 58 100 Q 80 95 100 100 Q 130 105 142 100" stroke="#c9a961" stroke-width="0.4" fill="none" opacity="0.5"/>
-                        <ellipse cx="100" cy="78" rx="38" ry="3" fill="#5a2818"/>
-                        <path d="M 75 78 L 125 78" stroke="#c9a961" stroke-width="0.4" opacity="0.5"/>
-                        <circle cx="85" cy="78" r="1" fill="#c9a961" opacity="0.8"/>
-                        <circle cx="115" cy="78" r="1" fill="#c9a961" opacity="0.8"/>
-                        <ellipse cx="100" cy="162" rx="48" ry="3" fill="#000" opacity="0.3"/>
-                    </svg>
+                    <img src="images/dishes/18.jpg" alt="Pintxo N° 18" loading="lazy" class="dish-img">
                 </div>
                 <div class="dish-body">
                     <div class="dish-header">
@@ -3146,28 +3002,28 @@ svg.sjoerd-mark {
 <section class="gallery">
     <div class="gallery-strip">
         <div class="gallery-item" data-label="Cantabrische zee">
-            <svg viewBox="0 0 100 100"><path d="M10 60 Q30 40 50 60 T90 60" stroke="#c9a961" stroke-width="1.5" fill="none"/><path d="M10 70 Q30 50 50 70 T90 70" stroke="#c9a961" stroke-width="1.5" fill="none" opacity="0.6"/></svg>
+            <img src="images/gallery/g01.jpg" alt="Cantabrische zee" loading="lazy" class="gallery-img">
         </div>
         <div class="gallery-item" data-label="Markt van Bilbao">
-            <svg viewBox="0 0 100 100"><circle cx="30" cy="50" r="15" fill="#c9a961" opacity="0.4"/><circle cx="60" cy="50" r="15" fill="#c9a961" opacity="0.6"/><circle cx="50" cy="70" r="10" fill="#c9a961" opacity="0.5"/></svg>
+            <img src="images/gallery/g02.jpg" alt="Markt van Bilbao" loading="lazy" class="gallery-img">
         </div>
         <div class="gallery-item" data-label="Olijfolie uit Andalusië">
-            <svg viewBox="0 0 100 100"><path d="M50 20 L60 60 L40 60 Z" fill="#c9a961" opacity="0.5"/><ellipse cx="50" cy="70" rx="20" ry="10" fill="#c9a961" opacity="0.3"/></svg>
+            <img src="images/gallery/g03.jpg" alt="Olijfolie uit Andalusië" loading="lazy" class="gallery-img">
         </div>
         <div class="gallery-item" data-label="Houtskoolgrill">
-            <svg viewBox="0 0 100 100"><path d="M50 30 Q40 50 50 70 Q60 50 50 30" fill="#a0492a" opacity="0.7"/><path d="M50 30 Q40 50 50 70 Q60 50 50 30" stroke="#c9a961" stroke-width="1" fill="none"/></svg>
+            <img src="images/gallery/g04.jpg" alt="Houtskoolgrill" loading="lazy" class="gallery-img">
         </div>
         <div class="gallery-item" data-label="Cantabrische zee">
-            <svg viewBox="0 0 100 100"><path d="M10 60 Q30 40 50 60 T90 60" stroke="#c9a961" stroke-width="1.5" fill="none"/><path d="M10 70 Q30 50 50 70 T90 70" stroke="#c9a961" stroke-width="1.5" fill="none" opacity="0.6"/></svg>
+            <img src="images/gallery/g05.jpg" alt="Cantabrische zee" loading="lazy" class="gallery-img">
         </div>
         <div class="gallery-item" data-label="Markt van Bilbao">
-            <svg viewBox="0 0 100 100"><circle cx="30" cy="50" r="15" fill="#c9a961" opacity="0.4"/><circle cx="60" cy="50" r="15" fill="#c9a961" opacity="0.6"/><circle cx="50" cy="70" r="10" fill="#c9a961" opacity="0.5"/></svg>
+            <img src="images/gallery/g01.jpg" alt="Markt van Bilbao" loading="lazy" class="gallery-img">
         </div>
         <div class="gallery-item" data-label="Olijfolie uit Andalusië">
-            <svg viewBox="0 0 100 100"><path d="M50 20 L60 60 L40 60 Z" fill="#c9a961" opacity="0.5"/><ellipse cx="50" cy="70" rx="20" ry="10" fill="#c9a961" opacity="0.3"/></svg>
+            <img src="images/gallery/g02.jpg" alt="Olijfolie uit Andalusië" loading="lazy" class="gallery-img">
         </div>
         <div class="gallery-item" data-label="Houtskoolgrill">
-            <svg viewBox="0 0 100 100"><path d="M50 30 Q40 50 50 70 Q60 50 50 30" fill="#a0492a" opacity="0.7"/><path d="M50 30 Q40 50 50 70 Q60 50 50 30" stroke="#c9a961" stroke-width="1" fill="none"/></svg>
+            <img src="images/gallery/g03.jpg" alt="Houtskoolgrill" loading="lazy" class="gallery-img">
         </div>
     </div>
 </section>
