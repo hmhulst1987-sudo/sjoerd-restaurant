@@ -177,6 +177,49 @@ body {
 @keyframes fadeIn { to { opacity: 1; } }
 
 /* ============================================
+   SJOERD LOGO MARK (shared SVG sprite)
+   ============================================ */
+.sjoerd-mark {
+    color: var(--c-gold);
+    display: inline-block;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+.sjoerd-mark svg,
+svg.sjoerd-mark {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+}
+.loader-logo {
+    width: clamp(80px, 14vw, 130px);
+    height: clamp(80px, 14vw, 130px);
+    color: var(--c-gold);
+    opacity: 0;
+    transform: scale(0.85);
+    animation: loadLogo 1.2s var(--ease-out) 0.2s forwards;
+}
+@keyframes loadLogo {
+    to { opacity: 1; transform: scale(1); }
+}
+.nav-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+.nav-logo .sjoerd-mark {
+    width: 32px;
+    height: 32px;
+}
+.footer-mark-svg {
+    width: 64px;
+    height: 64px;
+    color: var(--c-gold);
+    margin: 0 auto 0.6rem;
+}
+
+/* ============================================
    NAVIGATION
    ============================================ */
 .nav {
@@ -342,7 +385,7 @@ body {
     position: absolute;
     font-family: var(--f-display);
     color: var(--c-gold);
-    opacity: 0.06;
+    opacity: 0.03;
     font-style: italic;
     pointer-events: none;
     user-select: none;
@@ -1995,14 +2038,242 @@ body {
     .contact-form { padding: 2rem 1.5rem; }
 }
 
+/* ============================================
+   WIJN & SIDRA SECTION
+   ============================================ */
+.section.wijn {
+    background: linear-gradient(180deg, var(--c-ink) 0%, var(--c-deep) 100%);
+    position: relative;
+}
+.wijn-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+.wijn-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.wijn-card {
+    border: 1px solid rgba(201, 169, 97, 0.15);
+    padding: 2rem 1.8rem;
+    background: rgba(15, 20, 25, 0.4);
+    position: relative;
+    transition: all 0.5s var(--ease-out);
+    overflow: hidden;
+}
+.wijn-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--c-gold), transparent);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.wijn-card:hover {
+    border-color: rgba(201, 169, 97, 0.5);
+    transform: translateY(-4px);
+    background: rgba(15, 20, 25, 0.7);
+}
+.wijn-card:hover::before { opacity: 1; }
+.wijn-card-type {
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: var(--c-gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+}
+.wijn-card-name {
+    font-family: var(--f-display);
+    font-size: 1.7rem;
+    font-weight: 400;
+    color: var(--c-cream);
+    margin-bottom: 0.3rem;
+    line-height: 1.15;
+}
+.wijn-card-name em {
+    color: var(--c-gold);
+    font-style: italic;
+}
+.wijn-card-origin {
+    font-size: 0.75rem;
+    color: var(--c-mist);
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+}
+.wijn-card-note {
+    font-size: 0.85rem;
+    color: var(--c-cream-dim);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    min-height: 4em;
+}
+.wijn-card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(201, 169, 97, 0.1);
+}
+.wijn-card-glass {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--c-mist);
+    text-transform: uppercase;
+}
+.wijn-card-price {
+    font-family: var(--f-display);
+    font-size: 1.3rem;
+    color: var(--c-gold);
+}
+
+/* ============================================
+   AWARDS / PRESS STRIP
+   ============================================ */
+.awards {
+    padding: 5rem 3rem;
+    background: var(--c-deep);
+    border-top: 1px solid rgba(201, 169, 97, 0.1);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.1);
+    text-align: center;
+}
+.awards-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.5em;
+    color: var(--c-gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+}
+.awards-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3rem 4.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.awards-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--c-cream-dim);
+    transition: color 0.4s ease;
+}
+.awards-item:hover { color: var(--c-gold); }
+.awards-icon {
+    font-size: 1.5rem;
+    color: var(--c-gold);
+    opacity: 0.85;
+}
+.awards-title {
+    font-family: var(--f-display);
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+}
+.awards-title em {
+    font-style: italic;
+    color: var(--c-gold);
+}
+.awards-meta {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--c-mist);
+}
+.awards-stars {
+    color: var(--c-gold);
+    letter-spacing: 0.15em;
+    font-size: 1rem;
+}
+
+/* ============================================
+   FOOTER INFO GRID (adres + openingstijden)
+   ============================================ */
+.footer-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2.5rem;
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    padding: 0 1rem;
+    text-align: left;
+}
+.footer-info-col {
+    text-align: center;
+}
+.footer-info-eyebrow {
+    font-size: 0.6rem;
+    letter-spacing: 0.4em;
+    color: var(--c-gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+.footer-info-body {
+    font-family: var(--f-display);
+    font-size: 1.05rem;
+    color: var(--c-cream);
+    line-height: 1.7;
+    font-weight: 300;
+}
+.footer-info-body strong {
+    color: var(--c-gold);
+    font-weight: 400;
+}
+.footer-info-body a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+}
+.footer-info-body a:hover {
+    border-bottom-color: var(--c-gold);
+}
+
+@media (max-width: 768px) {
+    .awards-grid { gap: 2rem 2.5rem; }
+    .wijn-grid { grid-template-columns: 1fr; }
+}
+
 </style>
 </head>
 <body>
+
+<!-- Shared SVG sprite: Sjoerd logo mark (referenced via <use>) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+        <symbol id="sjoerd-mark-symbol" viewBox="0 0 100 100">
+            <!-- Outer seal ring -->
+            <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="0.7" opacity="0.4"/>
+            <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="0.3" opacity="0.25"/>
+            <!-- Three Michelin stars (subtle dots) -->
+            <circle cx="41" cy="13" r="1.6" fill="currentColor"/>
+            <circle cx="50" cy="11.5" r="1.7" fill="currentColor"/>
+            <circle cx="59" cy="13" r="1.6" fill="currentColor"/>
+            <!-- Crossed pintxo skewers (thin guides) -->
+            <line x1="22" y1="78" x2="78" y2="22" stroke="currentColor" stroke-width="0.5" opacity="0.35"/>
+            <line x1="78" y1="78" x2="22" y2="22" stroke="currentColor" stroke-width="0.5" opacity="0.35"/>
+            <!-- Skewer tip elements: olive top-left, peper top-right -->
+            <circle cx="22" cy="22" r="1.6" fill="currentColor" opacity="0.55"/>
+            <circle cx="78" cy="22" r="1.6" fill="currentColor" opacity="0.55"/>
+            <!-- Geometric serif S monogram -->
+            <path d="M 68 33 C 68 25 60 23 52 23 L 44 23 C 32 23 26 29 26 37 C 26 45 32 49 42 51 L 56 55 C 66 57 70 63 70 69 C 70 77 62 79 54 79 L 30 79"
+                  fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+    </defs>
+</svg>
 
 <div class="cursor-dot"></div>
 <div class="cursor-ring"></div>
 
 <div class="loader">
+    <svg class="loader-logo" aria-label="Sjoerd"><use href="#sjoerd-mark-symbol"/></svg>
     <div class="loader-mark">
         <span>S</span><span>J</span><span>O</span><span>E</span><span>R</span><span>D</span>
     </div>
@@ -2011,7 +2282,10 @@ body {
 </div>
 
 <nav class="nav">
-    <a href="#" class="nav-logo">SJOERD</a>
+    <a href="#" class="nav-logo" aria-label="Sjoerd home">
+        <svg class="sjoerd-mark" aria-hidden="true"><use href="#sjoerd-mark-symbol"/></svg>
+        <span>SJOERD</span>
+    </a>
     <ul class="nav-menu">
         <li><a href="#story">Het verhaal</a></li>
         <li><a href="#menu">Pintxos</a></li>
@@ -2149,9 +2423,9 @@ body {
 <section id="menu" class="section menu">
     <div class="section-inner">
         <div class="menu-header reveal">
-            <div class="section-eyebrow">De Kaart · Twaalf signature pintxos</div>
+            <div class="section-eyebrow">De Kaart · Achttien signature pintxos</div>
             <h2 class="section-title">Een levende <em>menukaart</em></h2>
-            <p class="section-lead">Elk gerecht is een hommage aan een Baskisch dorp, een seizoen, een herinnering.</p>
+            <p class="section-lead">Elk gerecht is een hommage aan een Baskisch dorp, een seizoen, een herinnering. De kaart wisselt mee met de seizoenen — wat hier staat, staat vandaag op tafel.</p>
         </div>
 
         <div class="filters reveal">
@@ -2520,6 +2794,264 @@ body {
                 </div>
             </article>
 
+            <article class="dish" data-category="groen" data-name="Tortilla de Patata" data-price="9.0">
+                <div class="dish-visual">
+                    <div class="dish-number">N° 13</div>
+                    <div class="dish-tag">Signature</div>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="100" cy="100" rx="70" ry="48" fill="#e8c878"/>
+                        <ellipse cx="100" cy="100" rx="70" ry="48" fill="none" stroke="#c9a961" stroke-width="1.2"/>
+                        <ellipse cx="100" cy="95" rx="62" ry="36" fill="#f4ebd9" opacity="0.6"/>
+                        <ellipse cx="80" cy="92" rx="8" ry="4" fill="#c9a961" opacity="0.7"/>
+                        <ellipse cx="120" cy="100" rx="6" ry="3.5" fill="#c9a961" opacity="0.7"/>
+                        <ellipse cx="95" cy="108" rx="7" ry="3" fill="#c9a961" opacity="0.6"/>
+                        <path d="M 35 105 Q 100 130 165 105" stroke="#a0492a" stroke-width="0.8" fill="none" opacity="0.4"/>
+                        <ellipse cx="100" cy="140" rx="55" ry="4" fill="#000" opacity="0.25"/>
+                    </svg>
+                </div>
+                <div class="dish-body">
+                    <div class="dish-header">
+                        <h3 class="dish-name">Tortilla de <em>Patata</em></h3>
+                        <div class="dish-price">€9</div>
+                    </div>
+                    <p class="dish-desc">De klassieke aardappel-omelet, hier traag gegaard tot het hart nog zijdezacht vloeit. Pochado-stijl, met Cebolla dulce.</p>
+                    <div class="dish-meta">
+                        <div class="dish-ingredients">Aardappel · ei · zoete ui</div>
+                        <i class="ti ti-plus dish-arrow" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dish" data-category="land" data-name="Carrillera al Tinto" data-price="13.5">
+                <div class="dish-visual">
+                    <div class="dish-number">N° 14</div>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="100" cy="110" rx="62" ry="28" fill="#1a1424" stroke="#c9a961" stroke-width="0.8"/>
+                        <ellipse cx="100" cy="105" rx="54" ry="22" fill="#5a2818"/>
+                        <path d="M 60 105 Q 80 90 110 95 Q 140 100 145 115 Q 130 125 95 122 Q 65 118 60 105 Z" fill="#a0492a" opacity="0.9"/>
+                        <path d="M 75 100 Q 95 95 115 100" stroke="#c9a961" stroke-width="0.6" fill="none" opacity="0.6"/>
+                        <path d="M 85 110 Q 105 113 130 110" stroke="#c9a961" stroke-width="0.6" fill="none" opacity="0.5"/>
+                        <circle cx="80" cy="100" r="2" fill="#3a6024" opacity="0.8"/>
+                        <circle cx="120" cy="112" r="2" fill="#3a6024" opacity="0.8"/>
+                        <circle cx="100" cy="105" r="1.5" fill="#c9a961" opacity="0.9"/>
+                        <ellipse cx="100" cy="138" rx="50" ry="3" fill="#000" opacity="0.3"/>
+                    </svg>
+                </div>
+                <div class="dish-body">
+                    <div class="dish-header">
+                        <h3 class="dish-name">Carrillera al <em>Tinto</em></h3>
+                        <div class="dish-price">€13.5</div>
+                    </div>
+                    <p class="dish-desc">Wangen van Iberico-varken, zes uur gestoofd in Rioja Reserva met laurier en piment de la Vera. Smelt op de vork.</p>
+                    <div class="dish-meta">
+                        <div class="dish-ingredients">Varkenswang · Rioja · piment</div>
+                        <i class="ti ti-plus dish-arrow" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dish" data-category="signature" data-name="Idiazabal con Membrillo" data-price="8.0">
+                <div class="dish-visual">
+                    <div class="dish-number">N° 15</div>
+                    <div class="dish-tag">Signature</div>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 55 75 L 135 70 L 145 130 L 65 135 Z" fill="#e8c878" stroke="#c9a961" stroke-width="1.2"/>
+                        <path d="M 55 75 L 135 70 L 135 78 L 55 83 Z" fill="#c9a961" opacity="0.6"/>
+                        <path d="M 60 90 L 130 87" stroke="#a0492a" stroke-width="0.4" opacity="0.3"/>
+                        <path d="M 62 105 L 132 102" stroke="#a0492a" stroke-width="0.4" opacity="0.3"/>
+                        <circle cx="75" cy="100" r="1.5" fill="#a0492a" opacity="0.4"/>
+                        <circle cx="110" cy="95" r="1.5" fill="#a0492a" opacity="0.4"/>
+                        <path d="M 100 75 Q 95 60 110 55 Q 125 55 130 70" fill="#a0492a" opacity="0.7"/>
+                        <path d="M 100 75 Q 95 60 110 55 Q 125 55 130 70" fill="none" stroke="#c9a961" stroke-width="0.5"/>
+                        <ellipse cx="115" cy="62" rx="2" ry="3" fill="#5a2818" opacity="0.5"/>
+                        <ellipse cx="100" cy="148" rx="45" ry="3" fill="#000" opacity="0.25"/>
+                    </svg>
+                </div>
+                <div class="dish-body">
+                    <div class="dish-header">
+                        <h3 class="dish-name">Idiazabal con <em>Membrillo</em></h3>
+                        <div class="dish-price">€8</div>
+                    </div>
+                    <p class="dish-desc">Gerookte schapenkaas DOP uit de Pyreneeën, met huisgemaakte kweepeer-pasta en walnotenhoning. Een Baskische klassieker.</p>
+                    <div class="dish-meta">
+                        <div class="dish-ingredients">Idiazabal DOP · membrillo · walnoot</div>
+                        <i class="ti ti-plus dish-arrow" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dish" data-category="zee" data-name="Boquerones en Vinagre" data-price="7.5">
+                <div class="dish-visual">
+                    <div class="dish-number">N° 16</div>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="100" cy="110" rx="65" ry="20" fill="#f4ebd9" opacity="0.15" stroke="#c9a961" stroke-width="0.5"/>
+                        <ellipse cx="70" cy="95" rx="22" ry="5" fill="#f4ebd9" stroke="#c9a961" stroke-width="0.6"/>
+                        <ellipse cx="100" cy="105" rx="24" ry="5" fill="#f4ebd9" stroke="#c9a961" stroke-width="0.6"/>
+                        <ellipse cx="130" cy="100" rx="22" ry="5" fill="#f4ebd9" stroke="#c9a961" stroke-width="0.6"/>
+                        <ellipse cx="85" cy="115" rx="20" ry="4.5" fill="#f4ebd9" stroke="#c9a961" stroke-width="0.6"/>
+                        <ellipse cx="120" cy="118" rx="22" ry="4.5" fill="#f4ebd9" stroke="#c9a961" stroke-width="0.6"/>
+                        <line x1="50" y1="95" x2="92" y2="95" stroke="#a0492a" stroke-width="0.3" opacity="0.5"/>
+                        <line x1="76" y1="105" x2="124" y2="105" stroke="#a0492a" stroke-width="0.3" opacity="0.5"/>
+                        <line x1="108" y1="100" x2="152" y2="100" stroke="#a0492a" stroke-width="0.3" opacity="0.5"/>
+                        <circle cx="55" cy="80" r="2" fill="#3a6024" opacity="0.8"/>
+                        <circle cx="145" cy="82" r="2" fill="#3a6024" opacity="0.8"/>
+                        <circle cx="100" cy="75" r="1.5" fill="#3a6024" opacity="0.7"/>
+                        <ellipse cx="100" cy="135" rx="55" ry="3" fill="#000" opacity="0.25"/>
+                    </svg>
+                </div>
+                <div class="dish-body">
+                    <div class="dish-header">
+                        <h3 class="dish-name">Boquerones en <em>Vinagre</em></h3>
+                        <div class="dish-price">€7.5</div>
+                    </div>
+                    <p class="dish-desc">Witte ansjovis gemarineerd in Sherry-azijn met knoflook en peterselie. Frisser dan de Gilda, vlijmscherp van zuur.</p>
+                    <div class="dish-meta">
+                        <div class="dish-ingredients">Ansjovis · Jerez-azijn · knoflook</div>
+                        <i class="ti ti-plus dish-arrow" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dish" data-category="groen" data-name="Setas a la Plancha" data-price="8.0">
+                <div class="dish-visual">
+                    <div class="dish-number">N° 17</div>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 55 95 Q 55 70 85 70 Q 115 70 115 95 Q 115 105 105 110 L 65 110 Q 55 105 55 95 Z" fill="#8a7340" opacity="0.9"/>
+                        <path d="M 55 95 Q 55 70 85 70 Q 115 70 115 95 Q 115 105 105 110 L 65 110 Q 55 105 55 95 Z" fill="none" stroke="#c9a961" stroke-width="0.8"/>
+                        <rect x="78" y="110" width="14" height="30" fill="#c9a961" opacity="0.5"/>
+                        <path d="M 100 105 Q 100 80 130 80 Q 160 80 160 110 Q 160 120 145 125 L 110 125 Q 100 118 100 105 Z" fill="#5a2818" opacity="0.85"/>
+                        <path d="M 100 105 Q 100 80 130 80 Q 160 80 160 110 Q 160 120 145 125 L 110 125 Q 100 118 100 105 Z" fill="none" stroke="#c9a961" stroke-width="0.8"/>
+                        <rect x="125" y="125" width="12" height="22" fill="#c9a961" opacity="0.5"/>
+                        <circle cx="75" cy="85" r="1.5" fill="#5a2818" opacity="0.7"/>
+                        <circle cx="95" cy="90" r="1.5" fill="#5a2818" opacity="0.7"/>
+                        <circle cx="125" cy="95" r="1.5" fill="#0a0d12" opacity="0.7"/>
+                        <circle cx="145" cy="100" r="1.5" fill="#0a0d12" opacity="0.7"/>
+                        <path d="M 45 155 L 165 155" stroke="#c9a961" stroke-width="0.6" opacity="0.3"/>
+                        <path d="M 60 160 L 75 162 L 90 158 L 105 161 L 120 159 L 135 162 L 150 158" stroke="#3a6024" stroke-width="0.8" fill="none" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="dish-body">
+                    <div class="dish-header">
+                        <h3 class="dish-name">Setas a la <em>Plancha</em></h3>
+                        <div class="dish-price">€8</div>
+                    </div>
+                    <p class="dish-desc">Wilde paddenstoelen uit de Cantabrische heuvels, op de hete plaat met knoflook, peterselie en een lik geroosterde hazelnoot-olie.</p>
+                    <div class="dish-meta">
+                        <div class="dish-ingredients">Boletus · knoflook · hazelnoot</div>
+                        <i class="ti ti-plus dish-arrow" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dish" data-category="signature" data-name="Goxua de Vainilla" data-price="8.5">
+                <div class="dish-visual">
+                    <div class="dish-number">N° 18</div>
+                    <div class="dish-tag">Dessert</div>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="55" y="75" width="90" height="80" rx="3" fill="#1a1424" stroke="#c9a961" stroke-width="0.8"/>
+                        <rect x="58" y="78" width="84" height="22" fill="#5a2818" opacity="0.9"/>
+                        <rect x="58" y="100" width="84" height="25" fill="#f4ebd9" opacity="0.95"/>
+                        <rect x="58" y="125" width="84" height="27" fill="#c9a961" opacity="0.85"/>
+                        <path d="M 58 125 Q 75 120 100 125 Q 125 130 142 125" stroke="#a0492a" stroke-width="0.8" fill="none" opacity="0.7"/>
+                        <path d="M 58 100 Q 80 95 100 100 Q 130 105 142 100" stroke="#c9a961" stroke-width="0.4" fill="none" opacity="0.5"/>
+                        <ellipse cx="100" cy="78" rx="38" ry="3" fill="#5a2818"/>
+                        <path d="M 75 78 L 125 78" stroke="#c9a961" stroke-width="0.4" opacity="0.5"/>
+                        <circle cx="85" cy="78" r="1" fill="#c9a961" opacity="0.8"/>
+                        <circle cx="115" cy="78" r="1" fill="#c9a961" opacity="0.8"/>
+                        <ellipse cx="100" cy="162" rx="48" ry="3" fill="#000" opacity="0.3"/>
+                    </svg>
+                </div>
+                <div class="dish-body">
+                    <div class="dish-header">
+                        <h3 class="dish-name">Goxua de <em>Vainilla</em></h3>
+                        <div class="dish-price">€8.5</div>
+                    </div>
+                    <p class="dish-desc">Vitoria's klassieker: lagen geslagen room, gebrande Madagascar-vanille custard en cognac-doordrenkte bizcocho. Onder een caramel-laag.</p>
+                    <div class="dish-meta">
+                        <div class="dish-ingredients">Room · vanille · gebrande suiker</div>
+                        <i class="ti ti-plus dish-arrow" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<section class="section wijn">
+    <div class="section-inner">
+        <div class="wijn-header reveal">
+            <div class="section-eyebrow">De Wijnkaart · Bodega &amp; Sidrería</div>
+            <h2 class="section-title">Een glas <em>Euskadi</em></h2>
+            <p class="section-lead">Onze sommelier reisde negen jaar de Baskische heuvels en Riojas door op zoek naar wijnen die de pintxos dragen, niet domineren. Hieronder de huiselijke favorieten — de volledige kaart krijg je aan tafel.</p>
+        </div>
+
+        <div class="wijn-grid">
+            <article class="wijn-card reveal">
+                <div class="wijn-card-type">Txakoli · Wit</div>
+                <h3 class="wijn-card-name">Ameztoi <em>Rubentis</em></h3>
+                <div class="wijn-card-origin">Getaria DO · 2024</div>
+                <p class="wijn-card-note">Licht parelend, citroenrasp, zeezout en een fluistering van groene appel. Geschonken van hoogte, zoals het hoort.</p>
+                <div class="wijn-card-bottom">
+                    <span class="wijn-card-glass">Per glas</span>
+                    <span class="wijn-card-price">€6.5</span>
+                </div>
+            </article>
+
+            <article class="wijn-card reveal">
+                <div class="wijn-card-type">Sidra Natural</div>
+                <h3 class="wijn-card-name">Isastegi <em>Sagardo</em></h3>
+                <div class="wijn-card-origin">Astigarraga · Onafhankelijk</div>
+                <p class="wijn-card-note">Wilde appel, leesteken-droog, ongefilterd. Onze gastheer giet 'm escanciado — de straal moet breken, anders proef je niets.</p>
+                <div class="wijn-card-bottom">
+                    <span class="wijn-card-glass">Per kupela</span>
+                    <span class="wijn-card-price">€5.5</span>
+                </div>
+            </article>
+
+            <article class="wijn-card reveal">
+                <div class="wijn-card-type">Rioja · Rood</div>
+                <h3 class="wijn-card-name">Muga <em>Reserva</em></h3>
+                <div class="wijn-card-origin">La Rioja Alta · 2019</div>
+                <p class="wijn-card-note">Tempranillo en Graciano, vierentwintig maanden Amerikaans eiken. Donkere kers, leer en vanille — het tegenwicht voor de Txuleta.</p>
+                <div class="wijn-card-bottom">
+                    <span class="wijn-card-glass">Per glas</span>
+                    <span class="wijn-card-price">€8.5</span>
+                </div>
+            </article>
+
+            <article class="wijn-card reveal">
+                <div class="wijn-card-type">Albariño · Wit</div>
+                <h3 class="wijn-card-name">Pazo de <em>Señoráns</em></h3>
+                <div class="wijn-card-origin">Rías Baixas DO · 2023</div>
+                <p class="wijn-card-note">Atlantische mineraliteit, witte perzik en jasmijn. Eindeloze finale, wijst rechtstreeks naar de Bacalao al Pil-Pil.</p>
+                <div class="wijn-card-bottom">
+                    <span class="wijn-card-glass">Per glas</span>
+                    <span class="wijn-card-price">€7.5</span>
+                </div>
+            </article>
+
+            <article class="wijn-card reveal">
+                <div class="wijn-card-type">Sherry · Manzanilla</div>
+                <h3 class="wijn-card-name">La Bota <em>en Rama</em></h3>
+                <div class="wijn-card-origin">Sanlúcar de Barrameda · Saca Primavera</div>
+                <p class="wijn-card-note">Zilte sherry recht uit het vat, ongefilterd. Amandel, zee-azijn en kamille — een metgezel voor de Boquerones.</p>
+                <div class="wijn-card-bottom">
+                    <span class="wijn-card-glass">Per copita</span>
+                    <span class="wijn-card-price">€6</span>
+                </div>
+            </article>
+
+            <article class="wijn-card reveal">
+                <div class="wijn-card-type">Vermut · Apéritif</div>
+                <h3 class="wijn-card-name">Yzaguirre <em>Rojo Reserva</em></h3>
+                <div class="wijn-card-origin">Reus, Tarragona · Cataluña</div>
+                <p class="wijn-card-note">Honderdjarig huisrecept, achtjaars-eik gerijpt. Bitterzoet, sinaasappelschil, vrouwekruid. Op ijs, met een olijf en een schijfje sinaasappel.</p>
+                <div class="wijn-card-bottom">
+                    <span class="wijn-card-glass">Op ijs</span>
+                    <span class="wijn-card-price">€6</span>
+                </div>
+            </article>
         </div>
     </div>
 </section>
@@ -2640,6 +3172,38 @@ body {
     </div>
 </section>
 
+<section class="awards">
+    <div class="awards-eyebrow reveal">Erkenning · Pers &amp; Prijzen</div>
+    <div class="awards-grid">
+        <div class="awards-item reveal">
+            <i class="ti ti-award awards-icon" aria-hidden="true"></i>
+            <div class="awards-stars">★ ★ ★</div>
+            <div class="awards-title">Michelin <em>Guide</em></div>
+            <div class="awards-meta">Drie sterren · 2026</div>
+        </div>
+        <div class="awards-item reveal">
+            <i class="ti ti-rosette awards-icon" aria-hidden="true"></i>
+            <div class="awards-title">Lekker <em>500</em></div>
+            <div class="awards-meta">Top 10 · 2024 — 2026</div>
+        </div>
+        <div class="awards-item reveal">
+            <i class="ti ti-chef-hat awards-icon" aria-hidden="true"></i>
+            <div class="awards-title">Bib <em>Gourmand</em></div>
+            <div class="awards-meta">Sinds 2018</div>
+        </div>
+        <div class="awards-item reveal">
+            <i class="ti ti-medal-2 awards-icon" aria-hidden="true"></i>
+            <div class="awards-title">Iens · Beste <em>Utrecht</em></div>
+            <div class="awards-meta">2023 · 2024</div>
+        </div>
+        <div class="awards-item reveal">
+            <i class="ti ti-leaf awards-icon" aria-hidden="true"></i>
+            <div class="awards-title">Groene <em>Ster</em></div>
+            <div class="awards-meta">Michelin Sustainability · 2025</div>
+        </div>
+    </div>
+</section>
+
 <section id="reviews" class="section reviews">
     <div class="section-inner">
         <div class="reviews-header">
@@ -2756,8 +3320,34 @@ body {
 </section>
 
 <footer class="footer">
+    <svg class="footer-mark-svg" aria-hidden="true"><use href="#sjoerd-mark-symbol"/></svg>
     <div class="footer-mark">SJOERD</div>
     <div class="footer-tag">Baskische pintxos · Utrecht · Sinds 2018</div>
+
+    <div class="footer-info">
+        <div class="footer-info-col">
+            <div class="footer-info-eyebrow">Adres</div>
+            <div class="footer-info-body">
+                <strong>Singel 24</strong><br>
+                3511 HB · Utrecht
+            </div>
+        </div>
+        <div class="footer-info-col">
+            <div class="footer-info-eyebrow">Openingstijden</div>
+            <div class="footer-info-body">
+                Woensdag — Zaterdag<br>
+                <strong>17:00 — 23:00</strong><br>
+                <span style="font-size: 0.78rem; color: var(--c-mist);">Zon · Maan · Dinsdag gesloten</span>
+            </div>
+        </div>
+        <div class="footer-info-col">
+            <div class="footer-info-eyebrow">Reserveren</div>
+            <div class="footer-info-body">
+                <a href="tel:+31302345678"><strong>030 — 234 5678</strong></a><br>
+                <a href="mailto:reserveren@sjoerd.nl">reserveren@sjoerd.nl</a>
+            </div>
+        </div>
+    </div>
 
     <div class="footer-social">
         <a href="#" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
