@@ -1,0 +1,3304 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sjoerd — Baskische Pintxos · Sterren Restaurant Utrecht</title>
+    <meta name="description" content="Sterren restaurant Sjoerd — authentieke Baskische pintxos in Utrecht. Een Michelin-ervaring met passie, traditie en innovatie.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.40.0/iconfont/tabler-icons.min.css">
+    <style>
+/* ============================================
+   SJOERD — Baskische Pintxos
+   Editorial Luxury Design System
+   ============================================ */
+
+:root {
+    --c-ink: #0a0d12;
+    --c-deep: #0f1419;
+    --c-ocean: #122130;
+    --c-aubergine: #1a1424;
+    --c-gold: #c9a961;
+    --c-gold-bright: #e8c878;
+    --c-gold-dim: #8a7340;
+    --c-cream: #f4ebd9;
+    --c-cream-dim: #c9bfa8;
+    --c-mist: #8a8a92;
+    --c-charcoal: #2a2a30;
+    --c-rust: #a0492a;
+
+    --f-display: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    --f-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --f-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--f-body);
+    background: var(--c-ink);
+    color: var(--c-cream);
+    overflow-x: hidden;
+    line-height: 1.6;
+    cursor: none;
+}
+
+/* ============================================
+   CUSTOM CURSOR
+   ============================================ */
+.cursor-dot,
+.cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+}
+
+.cursor-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--c-gold-bright);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease;
+}
+
+.cursor-ring {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--c-gold);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+}
+
+.cursor-ring.hover {
+    width: 60px;
+    height: 60px;
+    border-color: var(--c-gold-bright);
+    background: rgba(201, 169, 97, 0.05);
+}
+
+@media (max-width: 900px) {
+    body { cursor: auto; }
+    .cursor-dot, .cursor-ring { display: none; }
+}
+
+/* ============================================
+   LOADING SCREEN
+   ============================================ */
+.loader {
+    position: fixed;
+    inset: 0;
+    background: var(--c-ink);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: opacity 0.8s var(--ease-out), visibility 0.8s var(--ease-out);
+}
+
+.loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-mark {
+    font-family: var(--f-display);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: var(--c-gold);
+    position: relative;
+    overflow: hidden;
+}
+
+.loader-mark span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: loadLetter 0.8s var(--ease-out) forwards;
+}
+
+.loader-mark span:nth-child(1) { animation-delay: 0.1s; }
+.loader-mark span:nth-child(2) { animation-delay: 0.2s; }
+.loader-mark span:nth-child(3) { animation-delay: 0.3s; }
+.loader-mark span:nth-child(4) { animation-delay: 0.4s; }
+.loader-mark span:nth-child(5) { animation-delay: 0.5s; }
+.loader-mark span:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes loadLetter {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.loader-line {
+    width: 0;
+    height: 1px;
+    background: var(--c-gold);
+    margin-top: 2rem;
+    animation: loadLine 1.5s var(--ease-out) 0.8s forwards;
+}
+
+@keyframes loadLine {
+    to { width: 240px; }
+}
+
+.loader-text {
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--c-cream-dim);
+    margin-top: 1rem;
+    opacity: 0;
+    animation: fadeIn 0.6s ease 1.2s forwards;
+    text-transform: uppercase;
+}
+
+@keyframes fadeIn { to { opacity: 1; } }
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.4s var(--ease-out);
+    background: linear-gradient(180deg, rgba(10, 13, 18, 0.85) 0%, rgba(10, 13, 18, 0) 100%);
+}
+
+.nav.scrolled {
+    background: rgba(10, 13, 18, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 1rem 3rem;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.15);
+}
+
+.nav-logo {
+    font-family: var(--f-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    color: var(--c-gold);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-logo:hover { color: var(--c-gold-bright); }
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+    align-items: center;
+}
+
+.nav-menu a {
+    color: var(--c-cream);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 400;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--c-gold);
+    transition: width 0.4s var(--ease-out);
+}
+
+.nav-menu a:hover { color: var(--c-gold); }
+.nav-menu a:hover::before { width: 100%; }
+
+.nav-cta {
+    background: transparent;
+    border: 1px solid var(--c-gold);
+    color: var(--c-gold);
+    padding: 0.7rem 1.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s var(--ease-out);
+    font-family: var(--f-body);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--c-gold);
+    transform: translateY(100%);
+    transition: transform 0.4s var(--ease-out);
+    z-index: -1;
+}
+
+.nav-cta:hover { color: var(--c-ink); }
+.nav-cta:hover::before { transform: translateY(0); }
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--c-gold);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at center, var(--c-aubergine) 0%, var(--c-ink) 70%);
+}
+
+.hero-layers {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.hero-layer {
+    position: absolute;
+    inset: -10%;
+    will-change: transform;
+}
+
+.layer-noise {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.79 0 0 0 0 0.66 0 0 0 0 0.38 0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    pointer-events: none;
+}
+
+.layer-grain {
+    background: radial-gradient(circle at 30% 40%, rgba(201, 169, 97, 0.12), transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(160, 73, 42, 0.08), transparent 50%);
+    pointer-events: none;
+}
+
+.hero-stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    background: var(--c-cream);
+    border-radius: 50%;
+    animation: twinkle 4s infinite var(--ease-soft);
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 0.9; transform: scale(1.5); }
+}
+
+.hero-ornament {
+    position: absolute;
+    font-family: var(--f-display);
+    color: var(--c-gold);
+    opacity: 0.06;
+    font-style: italic;
+    pointer-events: none;
+    user-select: none;
+}
+
+.ornament-1 {
+    top: 15%;
+    left: 5%;
+    font-size: 8rem;
+    transform: rotate(-15deg);
+}
+
+.ornament-2 {
+    bottom: 20%;
+    right: 8%;
+    font-size: 10rem;
+    transform: rotate(8deg);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    max-width: 1000px;
+    padding: 0 2rem;
+}
+
+.hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--c-gold);
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroReveal 1s var(--ease-out) 0.4s forwards;
+}
+
+.hero-eyebrow::before,
+.hero-eyebrow::after {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--c-gold);
+}
+
+.hero-title {
+    font-family: var(--f-display);
+    font-size: clamp(4rem, 14vw, 12rem);
+    font-weight: 300;
+    line-height: 0.9;
+    color: var(--c-cream);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+    position: relative;
+}
+
+.hero-title .word {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.hero-title .word span {
+    display: inline-block;
+    transform: translateY(110%);
+    animation: titleReveal 1.2s var(--ease-out) forwards;
+}
+
+.hero-title .word:nth-child(1) span { animation-delay: 0.6s; }
+
+.hero-title em {
+    font-style: italic;
+    color: var(--c-gold);
+    font-weight: 300;
+}
+
+@keyframes titleReveal {
+    to { transform: translateY(0); }
+}
+
+@keyframes heroReveal {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-subtitle {
+    font-family: var(--f-display);
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    font-style: italic;
+    color: var(--c-cream-dim);
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroReveal 1s var(--ease-out) 1.2s forwards;
+    font-weight: 300;
+}
+
+.hero-stars-rating {
+    display: flex;
+    justify-content: center;
+    gap: 0.3rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.5s forwards;
+}
+
+.hero-stars-rating .ti {
+    color: var(--c-gold);
+    font-size: 1.3rem;
+}
+
+.hero-meta {
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--c-mist);
+    text-transform: uppercase;
+    margin-bottom: 3.5rem;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.7s forwards;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroReveal 1s var(--ease-out) 1.9s forwards;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 1.1rem 2.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s var(--ease-out);
+    font-family: var(--f-body);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.btn-primary {
+    background: var(--c-gold);
+    color: var(--c-ink);
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--c-gold-bright);
+    transform: translateX(-100%);
+    transition: transform 0.5s var(--ease-out);
+}
+
+.btn-primary span { position: relative; z-index: 2; }
+.btn-primary:hover::before { transform: translateX(0); }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(201, 169, 97, 0.25); }
+
+.btn-ghost {
+    background: transparent;
+    color: var(--c-cream);
+    border: 1px solid rgba(244, 235, 217, 0.3);
+}
+
+.btn-ghost:hover {
+    border-color: var(--c-gold);
+    color: var(--c-gold);
+    transform: translateY(-3px);
+}
+
+.scroll-cue {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--c-gold);
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0;
+    animation: fadeIn 1s ease 2.2s forwards;
+}
+
+.scroll-cue-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--c-gold), transparent);
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-cue-line::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: var(--c-gold-bright);
+    animation: scrollLine 2s infinite var(--ease-soft);
+}
+
+@keyframes scrollLine {
+    to { top: 200%; }
+}
+
+/* ============================================
+   SECTION GENERIC
+   ============================================ */
+.section {
+    position: relative;
+    padding: 10rem 3rem;
+    overflow: hidden;
+}
+
+.section-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
+}
+
+.section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--c-gold);
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+.section-eyebrow::before {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--c-gold);
+}
+
+.section-title {
+    font-family: var(--f-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 2rem;
+    color: var(--c-cream);
+    letter-spacing: -0.02em;
+}
+
+.section-title em {
+    font-style: italic;
+    color: var(--c-gold);
+}
+
+.section-lead {
+    font-family: var(--f-display);
+    font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+    color: var(--c-cream-dim);
+    max-width: 650px;
+    line-height: 1.5;
+    font-style: italic;
+    font-weight: 300;
+}
+
+/* ============================================
+   STORY / ABOUT
+   ============================================ */
+.story {
+    background: var(--c-deep);
+    position: relative;
+}
+
+.story::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 30%, rgba(201, 169, 97, 0.08), transparent 50%);
+    pointer-events: none;
+}
+
+.story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+    margin-top: 5rem;
+}
+
+.story-text p {
+    color: var(--c-cream-dim);
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.story-text p:first-of-type::first-letter {
+    font-family: var(--f-display);
+    font-size: 4rem;
+    color: var(--c-gold);
+    float: left;
+    line-height: 0.8;
+    margin: 0.5rem 0.7rem 0 0;
+    font-weight: 300;
+}
+
+.story-signature {
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(201, 169, 97, 0.2);
+}
+
+.signature-name {
+    font-family: var(--f-display);
+    font-style: italic;
+    font-size: 2rem;
+    color: var(--c-gold);
+}
+
+.signature-title {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--c-mist);
+    text-transform: uppercase;
+    border-left: 1px solid var(--c-gold);
+    padding-left: 1.5rem;
+}
+
+.story-visual {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+}
+
+.story-image {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--c-aubergine), var(--c-ocean));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.story-image svg {
+    width: 100%;
+    height: 100%;
+}
+
+.story-image-frame {
+    position: absolute;
+    inset: 20px;
+    border: 1px solid var(--c-gold);
+    pointer-events: none;
+    z-index: 3;
+}
+
+.story-image-tag {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background: var(--c-gold);
+    color: var(--c-ink);
+    padding: 1.5rem 2rem;
+    font-family: var(--f-display);
+    font-style: italic;
+    font-size: 1.3rem;
+    z-index: 4;
+    line-height: 1.2;
+}
+
+.story-image-tag small {
+    display: block;
+    font-family: var(--f-body);
+    font-style: normal;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+    opacity: 0.7;
+}
+
+.story-stats {
+    margin-top: 6rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid rgba(201, 169, 97, 0.2);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+}
+
+.stat {
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    border-right: 1px solid rgba(201, 169, 97, 0.15);
+    transition: background 0.4s ease;
+}
+
+.stat:last-child { border-right: none; }
+.stat:hover { background: rgba(201, 169, 97, 0.04); }
+
+.stat-num {
+    font-family: var(--f-display);
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    color: var(--c-gold);
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--c-cream-dim);
+    text-transform: uppercase;
+}
+
+/* ============================================
+   MENU SECTION
+   ============================================ */
+.menu {
+    background: var(--c-ink);
+    position: relative;
+}
+
+.menu-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.menu-header .section-eyebrow {
+    justify-content: center;
+}
+
+.menu-header .section-eyebrow::after {
+    content: '';
+    width: 30px;
+    height: 1px;
+    background: var(--c-gold);
+}
+
+.menu-header .section-title,
+.menu-header .section-lead {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menu-header .section-lead { text-align: center; }
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 5rem;
+    flex-wrap: wrap;
+}
+
+.filter {
+    padding: 0.8rem 1.5rem;
+    background: transparent;
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    color: var(--c-cream-dim);
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s var(--ease-out);
+    font-family: var(--f-body);
+}
+
+.filter:hover {
+    border-color: var(--c-gold);
+    color: var(--c-gold);
+}
+
+.filter.active {
+    background: var(--c-gold);
+    border-color: var(--c-gold);
+    color: var(--c-ink);
+}
+
+.dishes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2rem;
+}
+
+.dish {
+    position: relative;
+    background: var(--c-deep);
+    border: 1px solid rgba(201, 169, 97, 0.15);
+    overflow: hidden;
+    transition: all 0.5s var(--ease-out);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.dish.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dish:hover {
+    transform: translateY(-8px);
+    border-color: var(--c-gold);
+    background: var(--c-ocean);
+}
+
+.dish:hover .dish-visual {
+    transform: scale(1.05);
+}
+
+.dish:hover .dish-arrow {
+    transform: translate(8px, -8px);
+    color: var(--c-gold-bright);
+}
+
+.dish-visual {
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(135deg, var(--c-aubergine), var(--c-ocean));
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.6s var(--ease-out);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dish-visual svg {
+    width: 70%;
+    height: 70%;
+    opacity: 0.85;
+}
+
+.dish-number {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-family: var(--f-display);
+    font-style: italic;
+    color: var(--c-gold);
+    font-size: 1rem;
+    z-index: 2;
+    letter-spacing: 0.2em;
+}
+
+.dish-tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(10, 13, 18, 0.85);
+    color: var(--c-gold);
+    padding: 0.4rem 0.8rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+    z-index: 2;
+}
+
+.dish-body {
+    padding: 2rem 1.8rem;
+    position: relative;
+}
+
+.dish-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.7rem;
+}
+
+.dish-name {
+    font-family: var(--f-display);
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--c-cream);
+    line-height: 1.2;
+    flex: 1;
+}
+
+.dish-name em {
+    font-style: italic;
+    color: var(--c-gold);
+}
+
+.dish-price {
+    font-family: var(--f-display);
+    font-size: 1.4rem;
+    color: var(--c-gold);
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.dish-desc {
+    color: var(--c-cream-dim);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.dish-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(201, 169, 97, 0.15);
+}
+
+.dish-ingredients {
+    font-size: 0.7rem;
+    color: var(--c-mist);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.dish-arrow {
+    color: var(--c-gold);
+    font-size: 1.1rem;
+    transition: all 0.4s var(--ease-out);
+}
+
+/* ============================================
+   QUOTE / PHILOSOPHY (parallax block)
+   ============================================ */
+.philosophy {
+    position: relative;
+    padding: 12rem 3rem;
+    background: var(--c-aubergine);
+    text-align: center;
+    overflow: hidden;
+}
+
+.philosophy::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(201, 169, 97, 0.1), transparent 60%);
+    pointer-events: none;
+}
+
+.philosophy-bg {
+    position: absolute;
+    inset: 0;
+    will-change: transform;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cpath d='M0 200 Q100 100 200 200 T400 200' stroke='%23c9a961' stroke-width='0.5' fill='none' opacity='0.15'/%3E%3Cpath d='M0 250 Q100 150 200 250 T400 250' stroke='%23c9a961' stroke-width='0.5' fill='none' opacity='0.1'/%3E%3Cpath d='M0 150 Q100 50 200 150 T400 150' stroke='%23c9a961' stroke-width='0.5' fill='none' opacity='0.1'/%3E%3C/svg%3E");
+    opacity: 0.3;
+}
+
+.philosophy-quote {
+    position: relative;
+    z-index: 5;
+    font-family: var(--f-display);
+    font-size: clamp(1.8rem, 4vw, 3.5rem);
+    color: var(--c-cream);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.3;
+    max-width: 1000px;
+    margin: 0 auto;
+    letter-spacing: -0.01em;
+}
+
+.philosophy-quote .ti-quote {
+    color: var(--c-gold);
+    font-size: 3rem;
+    display: block;
+    margin: 0 auto 2rem;
+}
+
+.philosophy-quote em {
+    color: var(--c-gold);
+    font-style: italic;
+}
+
+.philosophy-attr {
+    margin-top: 3rem;
+    color: var(--c-gold);
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 5;
+}
+
+.philosophy-attr::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--c-gold);
+    margin: 0 auto 1.5rem;
+}
+
+/* ============================================
+   EXPERIENCE / CHEF'S TABLE
+   ============================================ */
+.experience {
+    background: var(--c-deep);
+    position: relative;
+}
+
+.exp-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    margin-top: 5rem;
+    align-items: start;
+}
+
+.exp-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.exp-card {
+    padding: 2.5rem 2rem;
+    background: var(--c-ocean);
+    border-left: 3px solid var(--c-gold);
+    transition: all 0.4s var(--ease-out);
+    cursor: pointer;
+}
+
+.exp-card:hover {
+    background: var(--c-aubergine);
+    transform: translateX(10px);
+}
+
+.exp-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.exp-card-name {
+    font-family: var(--f-display);
+    font-size: 1.8rem;
+    color: var(--c-cream);
+    font-weight: 400;
+}
+
+.exp-card-name em {
+    font-style: italic;
+    color: var(--c-gold);
+}
+
+.exp-card-price {
+    font-family: var(--f-display);
+    font-size: 1.5rem;
+    color: var(--c-gold);
+}
+
+.exp-card-desc {
+    color: var(--c-cream-dim);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.exp-card-courses {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    font-size: 0.7rem;
+    color: var(--c-mist);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.exp-card-courses span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.exp-card-courses .ti {
+    color: var(--c-gold);
+    font-size: 0.9rem;
+}
+
+.exp-info {
+    background: var(--c-ocean);
+    padding: 3rem 2.5rem;
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    position: sticky;
+    top: 100px;
+}
+
+.exp-info-title {
+    font-family: var(--f-display);
+    font-size: 1.5rem;
+    color: var(--c-gold);
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.exp-info-list {
+    list-style: none;
+}
+
+.exp-info-list li {
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.1);
+    color: var(--c-cream-dim);
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.exp-info-list li:last-child { border-bottom: none; }
+.exp-info-list span { color: var(--c-cream); }
+
+/* ============================================
+   GALLERY / STRIP
+   ============================================ */
+.gallery {
+    padding: 0;
+    background: var(--c-ink);
+    overflow: hidden;
+}
+
+.gallery-strip {
+    display: flex;
+    gap: 0;
+    width: 200%;
+    animation: scrollStrip 40s linear infinite;
+}
+
+.gallery-strip:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scrollStrip {
+    to { transform: translateX(-50%); }
+}
+
+.gallery-item {
+    flex: 0 0 25%;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, var(--c-aubergine), var(--c-ocean));
+    border-right: 1px solid var(--c-ink);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-item svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.7;
+    transition: transform 0.6s var(--ease-out);
+}
+
+.gallery-item::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(10, 13, 18, 0.9), transparent);
+    color: var(--c-gold);
+    font-family: var(--f-display);
+    font-style: italic;
+    font-size: 1.1rem;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.gallery-item:hover::after { opacity: 1; }
+.gallery-item:hover svg { transform: scale(1.1); }
+
+/* ============================================
+   TESTIMONIALS
+   ============================================ */
+.reviews {
+    background: var(--c-deep);
+    position: relative;
+}
+
+.reviews-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 3rem;
+    margin-bottom: 5rem;
+}
+
+.review-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.review-btn {
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border: 1px solid var(--c-gold);
+    color: var(--c-gold);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.review-btn:hover {
+    background: var(--c-gold);
+    color: var(--c-ink);
+}
+
+.reviews-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.review {
+    padding: 2.5rem 2rem;
+    background: var(--c-ocean);
+    border: 1px solid rgba(201, 169, 97, 0.15);
+    position: relative;
+    transition: all 0.4s var(--ease-out);
+}
+
+.review:hover {
+    border-color: var(--c-gold);
+    transform: translateY(-5px);
+}
+
+.review-quote-mark {
+    font-family: var(--f-display);
+    font-size: 5rem;
+    color: var(--c-gold);
+    line-height: 0.6;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.review-stars {
+    color: var(--c-gold);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+}
+
+.review-text {
+    color: var(--c-cream);
+    font-family: var(--f-display);
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+.review-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(201, 169, 97, 0.15);
+}
+
+.review-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--c-gold);
+    color: var(--c-ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.review-name {
+    font-size: 0.9rem;
+    color: var(--c-cream);
+    margin-bottom: 0.2rem;
+}
+
+.review-meta {
+    font-size: 0.7rem;
+    color: var(--c-mist);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+/* ============================================
+   CONTACT / RESERVATIE
+   ============================================ */
+.contact {
+    background: var(--c-ink);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: radial-gradient(circle at 70% 50%, rgba(201, 169, 97, 0.08), transparent 60%);
+    pointer-events: none;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    margin-top: 5rem;
+}
+
+.contact-info-block {
+    margin-bottom: 3rem;
+}
+
+.contact-info-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--c-gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.contact-info-label .ti {
+    font-size: 1rem;
+}
+
+.contact-info-value {
+    font-family: var(--f-display);
+    font-size: 1.3rem;
+    color: var(--c-cream);
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+.contact-info-value a {
+    color: var(--c-cream);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info-value a:hover { color: var(--c-gold); }
+
+.contact-form {
+    background: var(--c-deep);
+    padding: 3rem;
+    border: 1px solid rgba(201, 169, 97, 0.2);
+}
+
+.form-title {
+    font-family: var(--f-display);
+    font-size: 2rem;
+    color: var(--c-gold);
+    margin-bottom: 0.5rem;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.form-subtitle {
+    color: var(--c-cream-dim);
+    font-size: 0.85rem;
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.05em;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+.form-field {
+    margin-bottom: 1.2rem;
+}
+
+.form-field label {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--c-mist);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.3);
+    color: var(--c-cream);
+    padding: 0.7rem 0;
+    font-size: 0.95rem;
+    font-family: var(--f-body);
+    transition: border-color 0.3s ease;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+    outline: none;
+    border-bottom-color: var(--c-gold);
+}
+
+.form-field select {
+    cursor: pointer;
+}
+
+.form-field select option {
+    background: var(--c-ink);
+    color: var(--c-cream);
+}
+
+.form-field textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-submit {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 1.2rem;
+    background: var(--c-gold);
+    color: var(--c-ink);
+    border: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: var(--f-body);
+    transition: all 0.4s var(--ease-out);
+    position: relative;
+    overflow: hidden;
+}
+
+.form-submit:hover {
+    background: var(--c-gold-bright);
+    transform: translateY(-2px);
+    letter-spacing: 0.4em;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+    background: var(--c-ink);
+    border-top: 1px solid rgba(201, 169, 97, 0.15);
+    padding: 4rem 3rem 2rem;
+    text-align: center;
+}
+
+.footer-mark {
+    font-family: var(--f-display);
+    font-size: 2.5rem;
+    color: var(--c-gold);
+    letter-spacing: 0.3em;
+    font-weight: 300;
+    margin-bottom: 1rem;
+}
+
+.footer-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--c-cream-dim);
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.footer-social a {
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--c-cream-dim);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+    border-color: var(--c-gold);
+    color: var(--c-gold);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid rgba(201, 169, 97, 0.1);
+    color: var(--c-mist);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.pp-stamp {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0.85;
+    transition: opacity 0.4s ease;
+}
+
+.pp-stamp:hover {
+    opacity: 1;
+}
+
+.pp-stamp-mark {
+    width: 90px;
+    height: 90px;
+    border: 1.5px solid var(--c-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: radial-gradient(circle at center, rgba(201, 169, 97, 0.08), transparent);
+}
+
+.pp-stamp-mark::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 0.5px solid var(--c-gold);
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.pp-stamp-mark svg {
+    width: 55px;
+    height: 55px;
+}
+
+.pp-stamp-text {
+    font-family: var(--f-display);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--c-cream-dim);
+    letter-spacing: 0.1em;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.pp-stamp-text strong {
+    color: var(--c-gold);
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    display: block;
+    margin-top: 0.3rem;
+}
+
+/* ============================================
+   CART
+   ============================================ */
+.cart-fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background: var(--c-gold);
+    color: var(--c-ink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 50;
+    transition: all 0.4s var(--ease-bounce);
+    box-shadow: 0 10px 30px rgba(201, 169, 97, 0.3);
+    opacity: 0;
+    transform: scale(0);
+}
+
+.cart-fab.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.cart-fab:hover {
+    transform: scale(1.1);
+    background: var(--c-gold-bright);
+}
+
+.cart-fab .ti { font-size: 1.4rem; }
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--c-rust);
+    color: var(--c-cream);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    border: 2px solid var(--c-ink);
+}
+
+.cart-panel {
+    position: fixed;
+    top: 0;
+    right: -450px;
+    width: 420px;
+    max-width: 90vw;
+    height: 100vh;
+    background: var(--c-deep);
+    border-left: 1px solid rgba(201, 169, 97, 0.2);
+    z-index: 200;
+    transition: right 0.5s var(--ease-out);
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-panel.open { right: 0; }
+
+.cart-head {
+    padding: 2rem;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-title {
+    font-family: var(--f-display);
+    font-size: 1.5rem;
+    color: var(--c-gold);
+    font-style: italic;
+}
+
+.cart-close {
+    background: none;
+    border: none;
+    color: var(--c-cream);
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.cart-close:hover { color: var(--c-gold); }
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 2rem;
+}
+
+.cart-empty {
+    text-align: center;
+    color: var(--c-mist);
+    padding: 4rem 0;
+    font-family: var(--f-display);
+    font-style: italic;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.1);
+    gap: 1rem;
+}
+
+.cart-item-info { flex: 1; }
+
+.cart-item-name {
+    font-family: var(--f-display);
+    color: var(--c-cream);
+    font-size: 1.05rem;
+    margin-bottom: 0.3rem;
+}
+
+.cart-item-price {
+    color: var(--c-gold);
+    font-size: 0.85rem;
+}
+
+.cart-qty {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cart-qty button {
+    width: 26px;
+    height: 26px;
+    background: transparent;
+    border: 1px solid var(--c-gold);
+    color: var(--c-gold);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.cart-qty button:hover { background: var(--c-gold); color: var(--c-ink); }
+
+.cart-qty span {
+    min-width: 24px;
+    text-align: center;
+    color: var(--c-cream);
+}
+
+.cart-foot {
+    padding: 2rem;
+    border-top: 1px solid rgba(201, 169, 97, 0.15);
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1.5rem;
+}
+
+.cart-total-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--c-cream-dim);
+    text-transform: uppercase;
+}
+
+.cart-total-value {
+    font-family: var(--f-display);
+    font-size: 2rem;
+    color: var(--c-gold);
+}
+
+.cart-checkout {
+    width: 100%;
+    padding: 1.2rem;
+    background: var(--c-gold);
+    color: var(--c-ink);
+    border: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-family: var(--f-body);
+}
+
+.cart-checkout:hover { background: var(--c-gold-bright); }
+
+.cart-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 13, 18, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 150;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.cart-backdrop.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ============================================
+   TOAST
+   ============================================ */
+.toast {
+    position: fixed;
+    bottom: 7rem;
+    right: 2rem;
+    background: var(--c-deep);
+    border-left: 3px solid var(--c-gold);
+    color: var(--c-cream);
+    padding: 1.2rem 1.8rem;
+    z-index: 300;
+    transform: translateX(120%);
+    transition: transform 0.5s var(--ease-out);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.9rem;
+    max-width: 320px;
+}
+
+.toast.show { transform: translateX(0); }
+.toast .ti { color: var(--c-gold); font-size: 1.2rem; }
+
+/* ============================================
+   REVEAL ANIMATIONS
+   ============================================ */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s var(--ease-out), transform 1s var(--ease-out);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.reveal-stagger.visible > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0s; }
+.reveal-stagger.visible > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+.reveal-stagger.visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+.reveal-stagger.visible > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+    .story-grid,
+    .contact-grid,
+    .exp-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .reviews-track {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .gallery-item { flex: 0 0 33%; }
+}
+
+@media (max-width: 768px) {
+    .nav { padding: 1.2rem 1.5rem; }
+    .nav.scrolled { padding: 0.8rem 1.5rem; }
+    .nav-menu { display: none; }
+    .nav-toggle { display: block; }
+
+    .nav-mobile {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: var(--c-ink);
+        z-index: 99;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: right 0.5s var(--ease-out);
+    }
+
+    .nav-mobile.open { right: 0; }
+
+    .nav-mobile a {
+        color: var(--c-cream);
+        text-decoration: none;
+        font-family: var(--f-display);
+        font-size: 2rem;
+        font-style: italic;
+    }
+
+    .section { padding: 5rem 1.5rem; }
+    .philosophy { padding: 6rem 1.5rem; }
+
+    .story-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .stat {
+        border-right: none;
+        border-bottom: 1px solid rgba(201, 169, 97, 0.15);
+    }
+    .stat:nth-child(odd) { border-right: 1px solid rgba(201, 169, 97, 0.15); }
+    .stat:nth-last-child(-n+2) { border-bottom: none; }
+
+    .reviews-track {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-item { flex: 0 0 50%; }
+
+    .form-row { grid-template-columns: 1fr; }
+
+    .reviews-header {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form { padding: 2rem 1.5rem; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<div class="loader">
+    <div class="loader-mark">
+        <span>S</span><span>J</span><span>O</span><span>E</span><span>R</span><span>D</span>
+    </div>
+    <div class="loader-line"></div>
+    <div class="loader-text">Baskische pintxos · est. 2018</div>
+</div>
+
+<nav class="nav">
+    <a href="#" class="nav-logo">SJOERD</a>
+    <ul class="nav-menu">
+        <li><a href="#story">Het verhaal</a></li>
+        <li><a href="#menu">Pintxos</a></li>
+        <li><a href="#experience">Chef's table</a></li>
+        <li><a href="#reviews">Stemmen</a></li>
+        <li><a href="#contact">Reserveren</a></li>
+    </ul>
+    <button class="nav-cta" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Boek een tafel</button>
+    <button class="nav-toggle" aria-label="menu">☰</button>
+</nav>
+
+<div class="nav-mobile">
+    <a href="#story">Het verhaal</a>
+    <a href="#menu">Pintxos</a>
+    <a href="#experience">Chef's table</a>
+    <a href="#reviews">Stemmen</a>
+    <a href="#contact">Reserveren</a>
+</div>
+
+<header class="hero">
+    <div class="hero-layers">
+        <div class="hero-layer layer-grain"></div>
+        <div class="hero-layer layer-noise"></div>
+        <div class="hero-stars"></div>
+    </div>
+
+    <div class="hero-ornament ornament-1">pintxo</div>
+    <div class="hero-ornament ornament-2">euskadi</div>
+
+    <div class="hero-content">
+        <div class="hero-eyebrow">Sterren restaurant · Utrecht</div>
+
+        <h1 class="hero-title">
+            <span class="word"><span>Sjoerd</span></span>
+        </h1>
+
+        <p class="hero-subtitle">Baskische <em>pintxos</em>, met geest en grenzeloos vakmanschap</p>
+
+        <div class="hero-stars-rating">
+            <i class="ti ti-star" aria-hidden="true"></i>
+            <i class="ti ti-star" aria-hidden="true"></i>
+            <i class="ti ti-star" aria-hidden="true"></i>
+        </div>
+
+        <div class="hero-meta">Drie Michelin-sterren · Donostia op je bord</div>
+
+        <div class="hero-actions">
+            <button class="btn btn-primary" onclick="document.querySelector('#menu').scrollIntoView({behavior:'smooth'})">
+                <span>Ontdek de pintxos</span>
+                <i class="ti ti-arrow-right" aria-hidden="true"></i>
+            </button>
+            <button class="btn btn-ghost" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">
+                Reserveer een avond
+            </button>
+        </div>
+    </div>
+
+    <div class="scroll-cue">
+        <span>Scroll</span>
+        <div class="scroll-cue-line"></div>
+    </div>
+</header>
+
+<section id="story" class="section story">
+    <div class="section-inner">
+        <div class="reveal">
+            <div class="section-eyebrow">Sinds 2018 · Het Sjoerd verhaal</div>
+            <h2 class="section-title">Van San Sebastián<br>naar de <em>Singel</em></h2>
+            <p class="section-lead">Een kleine Baskische bar in de oude haven. Een leerling-kok uit Utrecht. Tien jaar later, een sterrenrestaurant.</p>
+        </div>
+
+        <div class="story-grid">
+            <div class="story-text reveal">
+                <p>Sjoerd Verhagen was twintig jaar oud toen hij voor het eerst de smalle straatjes van de Parte Vieja in Donostia inliep. Hij zou er drie maanden blijven. Het werden vijf jaar — een leertijd onder de strengste meesters van Baskenland, waar elke pintxo telt en het zout een eigen taal spreekt.</p>
+
+                <p>Terug in Nederland opende hij in een onopvallend pand aan het Gasthuisplein zijn eigen plek. Geen tapas. Pintxos. Het verschil is alles. Waar tapas bijgerechten zijn, zijn pintxos kleine composities — meesterwerken die hun verhaal in drie happen vertellen.</p>
+
+                <p>Vandaag werken twaalf chefs in Sjoerd's keuken. De jamón komt nog steeds uit Salamanca. De ansjovis nog steeds uit Getaria. En Sjoerd, nu drie sterren rijker, staat zes avonden per week zelf achter de pas.</p>
+
+                <div class="story-signature">
+                    <div class="signature-name">Sjoerd Verhagen</div>
+                    <div class="signature-title">Chef · Eigenaar</div>
+                </div>
+            </div>
+
+            <div class="story-visual reveal">
+                <div class="story-image">
+                    <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="chefGrad" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#c9a961" stop-opacity="0.3"/>
+                                <stop offset="100%" stop-color="#c9a961" stop-opacity="0.1"/>
+                            </linearGradient>
+                        </defs>
+                        <ellipse cx="200" cy="450" rx="120" ry="20" fill="#000" opacity="0.3"/>
+                        <path d="M150 200 Q150 140 200 140 Q250 140 250 200 L260 220 Q240 230 200 230 Q160 230 140 220 Z" fill="url(#chefGrad)" stroke="#c9a961" stroke-width="1.5"/>
+                        <path d="M150 220 L150 380 Q150 410 200 410 Q250 410 250 380 L250 220" fill="url(#chefGrad)" stroke="#c9a961" stroke-width="1.5"/>
+                        <ellipse cx="180" cy="190" rx="3" ry="4" fill="#c9a961"/>
+                        <ellipse cx="220" cy="190" rx="3" ry="4" fill="#c9a961"/>
+                        <path d="M185 210 Q200 215 215 210" stroke="#c9a961" stroke-width="1.5" fill="none"/>
+                        <path d="M130 150 Q150 90 200 90 Q250 90 270 150 L270 175 Q230 165 200 165 Q170 165 130 175 Z" fill="#c9a961" opacity="0.6"/>
+                        <line x1="120" y1="280" x2="180" y2="280" stroke="#c9a961" stroke-width="0.8" opacity="0.5"/>
+                        <line x1="120" y1="300" x2="160" y2="300" stroke="#c9a961" stroke-width="0.8" opacity="0.5"/>
+                        <text x="200" y="470" font-family="Cormorant Garamond" font-style="italic" font-size="16" fill="#c9a961" text-anchor="middle" opacity="0.6">~ Maestro de Pintxos ~</text>
+                    </svg>
+                </div>
+                <div class="story-image-frame"></div>
+                <div class="story-image-tag">
+                    Sjoerd<small>est. 2018</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="story-stats reveal-stagger">
+            <div class="stat">
+                <div class="stat-num" data-target="12">12</div>
+                <div class="stat-label">Chefs in keuken</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num" data-target="3">3</div>
+                <div class="stat-label">Michelin sterren</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num" data-target="48">48</div>
+                <div class="stat-label">Pintxos op kaart</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num" data-target="2018">2018</div>
+                <div class="stat-label">Opgericht</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="menu" class="section menu">
+    <div class="section-inner">
+        <div class="menu-header reveal">
+            <div class="section-eyebrow">De Kaart · Twaalf signature pintxos</div>
+            <h2 class="section-title">Een levende <em>menukaart</em></h2>
+            <p class="section-lead">Elk gerecht is een hommage aan een Baskisch dorp, een seizoen, een herinnering.</p>
+        </div>
+
+        <div class="filters reveal">
+            <button class="filter active" data-filter="all">Alles</button>
+            <button class="filter" data-filter="zee">Uit de zee</button>
+            <button class="filter" data-filter="land">Van het land</button>
+            <button class="filter" data-filter="groen">Vegetarisch</button>
+            <button class="filter" data-filter="signature">Signature</button>
+        </div>
+
+        <div class="dishes">
+
+            <article class="dish" data-category="zee" data-name="Gildas de Anchoa" data-price="8.5">
+                <div class="dish-visual">
+                    <div class="dish-number">N° 01</div>
+                    <div class="dish-tag">Signature</div>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="100" y1="30" x2="100" y2="170" stroke="#c9a961" stroke-width="2"/>
+                        <ellipse cx="100" cy="50" rx="18" ry="14" fill="#a0492a" opacity="0.85"/>
+                        <ellipse cx="100" cy="50" rx="18" ry="14" fill="none" stroke="#c9a961" stroke-width="0.8"/>
+                        <path d="M80 100 Q100 80 120 100 Q120 120 100 125 Q80 120 80 100" fill="#8a7340" opacity="0.7"/>
+                        <path d="M80 100 Q100 80 120 100 Q120 120 100 125 Q80 120 80 100" fill="none" stroke="#c9a961" stroke-width="0.8"/>
+                        <ellipse cx="100" cy="150" rx="14" ry="18" fill="#5d8a3a" opacity="0.7"/>
+                        <ellipse cx="100" cy="150" rx="14" ry="18" fill="none" stroke="#c9a961" stroke-width="0.8"/>
+                        <circle cx="95" cy="148" r="2" fill="#c9a961"/>
+                    </svg>
+                </div>
+                <div class="dish-body">
+                    <div class="dish-header">
+                        <h3 class="dish-name">Gildas de <em>Anchoa</em></h3>
+                        <div class="dish-price">€8.5</div>
+                    </div>
+                    <p class="dish-desc">Het origineel uit San Sebastián. Cantabrische ansjovis, Manzanilla olijf en zoute peper, op een prikker.</p>
+                    <div class="dish-meta">
+                        <div class="dish-ingredients">Ansjovis · olijf · guindilla</div>
+                        <i class="ti ti-plus dish-arrow" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dish" data-category="zee" data-name="Bacalao al Pil-Pil" data-price="12.0">
+                <div class="dish-visual">
+                    <div class="dish-number">N° 02</div>
+                    <div class="dish-tag">Signature</div>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="100" cy="100" rx="80" ry="50" fill="#1a1424" stroke="#c9a961" stroke-width="1"/>
+                        <ellipse cx="100" cy="100" rx="60" ry="35" fill="#e8c878" opacity="0.85"/>
+                        <path d="M70 95 Q100 80 130 95 L130 110 Q100 120 70 110 Z" fill="#f4ebd9" opacity="0.9"/>
+                        <path d="M70 95 Q100 80 130 95 L130 110 Q100 120 70 110 Z" fill="none" stroke="#c9a961" stroke-width="0.8"/>
+                        <circle cx="80" cy="105" r="2" fill="#a0492a"/>
+                        <circle cx="120" cy="100" r="2" fill="#a0492a"/>
+                        <circle cx="100" cy="90" r="1.5" fill="#a0492a"/>
+                        <ellipse cx="60" cy="115" rx="3" ry="2" fill="#5d8a3a"/>
+                        <ellipse cx="140" cy="115" rx="3" ry="2" fill="#5d8a3a"/>
+                    </svg>
+                </div>
+                <div class="dish-body">
+                    <div class="dish-header">
+                        <h3 class="dish-name">Bacalao al <em>Pil-Pil</em></h3>
+                        <div class="dish-price">€12</div>
+                    </div>
+                    <p class="dish-desc">Kabeljauw in zijn eigen emulsie, een traditie waarbij de saus dansend wordt opgeschud. Vergeet niets.</p>
+                    <div class="dish-meta">
+                        <div class="dish-ingredients">Kabeljauw · knoflook · pimentón</div>
+                        <i class="ti ti-plus dish-arrow" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dish" data-category="zee" data-name="Pulpo a la Brasa" data-price="14.5">
+                <div class="dish-visual">
+                    <div class="dish-number">N° 03</div>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="100" cy="80" rx="35" ry="25" fill="#a0492a" opacity="0.9"/>
+                        <ellipse cx="100" cy="80" rx="35" ry="25" fill="none" stroke="#c9a961" stroke-width="1"/>
+                        <path d="M75 95 Q60 130 50 150" stroke="#a0492a" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
+                        <path d="M85 100 Q70 140 65 165" stroke="#a0492a" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
+                        <path d="M115 100 Q130 140 135 165" stroke="#a0492a" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
+                        <path d="M125 95 Q140 130 150 150" stroke="#a0492a" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
+                        <circle cx="55" cy="155" r="2" fill="#c9a961"/>
+                        <circle cx="68" cy="170" r="2" fill="#c9a961"/>
+                        <circle cx="132" cy="170" r="2" fill="#c9a961"/>
+                        <circle cx="145" cy="155" r="2" fill="#c9a961"/>
+                        <circle cx="92" cy="75" r="2" fill="#0a0d12"/>
+                        <circle cx="108" cy="75" r="2" fill="#0a0d12"/>
+                        <ellipse cx="100" cy="40" rx="40" ry="3" fill="#c9a961" opacity="0.3"/>
+                    </svg>
+                </div>
+                <div class="dish-body">
+                    <div class="dish-header">
+                        <h3 class="dish-name">Pulpo a la <em>Brasa</em></h3>
+                        <div class="dish-price">€14.5</div>
+                    </div>
+                    <p class="dish-desc">Galicische octopus, eerst zacht gegaard, daarna op houtskool gegrild. Geserveerd met aardappelpuree en pimentón olie.</p>
+                    <div class="dish-meta">
+                        <div class="dish-ingredients">Octopus · paprika · aardappel</div>
+                        <i class="ti ti-plus dish-arrow" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dish" data-category="land" data-name="Txuleta de Vaca Vieja" data-price="18.0">
+                <div class="dish-visual">
+                    <div class="dish-number">N° 04</div>
+                    <div class="dish-tag">Signature</div>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M40 80 Q40 60 60 60 L140 60 Q160 60 160 80 L160 130 Q160 150 140 150 L60 150 Q40 150 40 130 Z" fill="#a0492a" opacity="0.9"/>
+                        <path d="M40 80 Q40 60 60 60 L140 60 Q160 60 160 80 L160 130 Q160 150 140 150 L60 150 Q40 150 40 130 Z" fill="none" stroke="#c9a961" stroke-width="1.5"/>
+                        <path d="M55 70 Q70 80 55 90 M55 95 Q72 105 55 115 M55 120 Q70 130 55 140" stroke="#5a2818" stroke-width="2" fill="none" opacity="0.7"/>
+                        <path d="M145 70 Q130 80 145 90 M145 95 Q128 105 145 115 M145 120 Q130 130 145 140" stroke="#5a2818" stroke-width="2" fill="none" opacity="0.7"/>
+                        <ellipse cx="100" cy="105" rx="30" ry="20" fill="#f4ebd9" opacity="0.4"/>
+                        <circle cx="80" cy="95" r="3" fill="#c9a961" opacity="0.7"/>
+                        <circle cx="120" cy="110" r="2" fill="#c9a961" opacity="0.7"/>
+                    </svg>
+                </div>
+                <div class="dish-body">
+                    <div class="dish-header">
+                        <h3 class="dish-name">Txuleta de <em>Vaca Vieja</em></h3>
+                        <div class="dish-price">€18</div>
+                    </div>
+                    <p class="dish-desc">Een mini portie van onze beroemde 14-jarige melkkoe entrecôte. Op de plancha, met grof zeezout.</p>
+                    <div class="dish-meta">
+                        <div class="dish-ingredients">Oud rund · zeezout · vlamgrill</div>
+                        <i class="ti ti-plus dish-arrow" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dish" data-category="land" data-name="Croqueta de Jamón Ibérico" data-price="7.5">
+                <div class="dish-visual">
+                    <div class="dish-number">N° 05</div>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="80" cy="100" rx="32" ry="22" fill="#c9a961" opacity="0.9"/>
+                        <ellipse cx="80" cy="100" rx="32" ry="22" fill="none" stroke="#a0492a" stroke-width="1"/>
+                        <ellipse cx="80" cy="95" rx="25" ry="15" fill="#e8c878" opacity="0.7"/>
+                        <circle cx="65" cy="90" r="1.5" fill="#a0492a"/>
+                        <circle cx="95" cy="105" r="1.5" fill="#a0492a"/>
+                        <circle cx="80" cy="100" r="1" fill="#a0492a"/>
+                        <ellipse cx="130" cy="115" rx="30" ry="20" fill="#c9a961" opacity="0.9"/>
+                        <ellipse cx="130" cy="115" rx="30" ry="20" fill="none" stroke="#a0492a" stroke-width="1"/>
+                        <ellipse cx="130" cy="110" rx="22" ry="13" fill="#e8c878" opacity="0.7"/>
+                        <circle cx="120" cy="108" r="1.5" fill="#a0492a"/>
+                        <circle cx="140" cy="118" r="1.5" fill="#a0492a"/>
+                        <path d="M50 140 Q100 150 160 140" stroke="#c9a961" stroke-width="0.8" fill="none" opacity="0.4"/>
+                    </svg>
+                </div>
+                <div class="dish-body">
+                    <div class="dish-header">
+                        <h3 class="dish-name">Croqueta de <em>Jamón Ibérico</em></h3>
+                        <div class="dish-price">€7.5</div>
+                    </div>
+                    <p class="dish-desc">Vloeibare bechamel met Bellota jamón. Een knapperige korst die smelt op de tong.</p>
+                    <div class="dish-meta">
+                        <div class="dish-ingredients">Jamón ibérico · bechamel · paneer</div>
+                        <i class="ti ti-plus dish-arrow" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dish" data-category="land" data-name="Chorizo a la Sidra" data-price="9.0">
+                <div class="dish-visual">
+                    <div class="dish-number">N° 06</div>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50 100 Q50 80 70 80 L130 80 Q150 80 150 100 L150 110 Q150 130 130 130 L70 130 Q50 130 50 110 Z" fill="#a0492a"/>
+                        <path d="M50 100 Q50 80 70 80 L130 80 Q150 80 150 100 L150 110 Q150 130 130 130 L70 130 Q50 130 50 110 Z" fill="none" stroke="#c9a961" stroke-width="1.2"/>
+                        <ellipse cx="75" cy="100" rx="3" ry="4" fill="#5a2818"/>
+                        <ellipse cx="100" cy="95" rx="2" ry="3" fill="#5a2818"/>
+                        <ellipse cx="125" cy="105" rx="3" ry="4" fill="#5a2818"/>
+                        <ellipse cx="90" cy="115" rx="2" ry="3" fill="#5a2818"/>
+                        <ellipse cx="115" cy="115" rx="2" ry="3" fill="#5a2818"/>
+                        <path d="M100 60 Q90 50 95 40 Q100 45 100 55" stroke="#c9a961" stroke-width="1.5" fill="none" opacity="0.6"/>
+                        <path d="M110 65 Q120 55 115 45 Q110 50 110 60" stroke="#c9a961" stroke-width="1.5" fill="none" opacity="0.6"/>
+                        <path d="M40 145 Q100 160 160 145" stroke="#c9a961" stroke-width="0.8" fill="none" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="dish-body">
+                    <div class="dish-header">
+                        <h3 class="dish-name">Chorizo a la <em>Sidra</em></h3>
+                        <div class="dish-price">€9</div>
+                    </div>
+                    <p class="dish-desc">Asturische chorizo flambé in natuurlijke cider. Rokerig, zoetzuur, ongeëvenaard.</p>
+                    <div class="dish-meta">
+                        <div class="dish-ingredients">Chorizo · sidra natural · laurier</div>
+                        <i class="ti ti-plus dish-arrow" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dish" data-category="groen" data-name="Pimientos de Padrón" data-price="7.0">
+                <div class="dish-visual">
+                    <div class="dish-number">N° 07</div>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M70 60 Q60 100 75 140 Q90 145 95 130 Q90 100 85 70 Z" fill="#3a6024" stroke="#c9a961" stroke-width="0.8"/>
+                        <path d="M110 70 Q100 110 110 150 Q125 152 130 137 Q125 110 120 80 Z" fill="#4a7028" stroke="#c9a961" stroke-width="0.8"/>
+                        <path d="M140 55 Q132 100 145 145 Q160 147 162 130 Q158 100 152 65 Z" fill="#3a6024" stroke="#c9a961" stroke-width="0.8"/>
+                        <path d="M50 55 Q42 95 55 140 Q70 142 72 125 Q68 95 62 65 Z" fill="#4a7028" stroke="#c9a961" stroke-width="0.8"/>
+                        <ellipse cx="77" cy="55" rx="8" ry="3" fill="#2a4818"/>
+                        <ellipse cx="115" cy="65" rx="8" ry="3" fill="#2a4818"/>
+                        <ellipse cx="146" cy="50" rx="8" ry="3" fill="#2a4818"/>
+                        <ellipse cx="56" cy="50" rx="8" ry="3" fill="#2a4818"/>
+                        <circle cx="170" cy="80" r="2" fill="#f4ebd9" opacity="0.7"/>
+                        <circle cx="35" cy="100" r="2" fill="#f4ebd9" opacity="0.7"/>
+                        <circle cx="180" cy="130" r="1.5" fill="#f4ebd9" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="dish-body">
+                    <div class="dish-header">
+                        <h3 class="dish-name">Pimientos de <em>Padrón</em></h3>
+                        <div class="dish-price">€7</div>
+                    </div>
+                    <p class="dish-desc">Galicische peppertjes uit Padrón. Sommige zijn mild, sommige pittig — het is de roulette van het zuiden.</p>
+                    <div class="dish-meta">
+                        <div class="dish-ingredients">Padrón pepers · zeezout · EVOO</div>
+                        <i class="ti ti-plus dish-arrow" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dish" data-category="groen" data-name="Tortilla de Patatas" data-price="8.0">
+                <div class="dish-visual">
+                    <div class="dish-number">N° 08</div>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="100" cy="100" rx="65" ry="40" fill="#e8c878" stroke="#c9a961" stroke-width="1.2"/>
+                        <ellipse cx="100" cy="92" rx="60" ry="35" fill="#f4ebd9" opacity="0.6"/>
+                        <ellipse cx="80" cy="90" rx="6" ry="4" fill="#c9a961" opacity="0.7"/>
+                        <ellipse cx="115" cy="100" rx="7" ry="5" fill="#c9a961" opacity="0.7"/>
+                        <ellipse cx="95" cy="105" rx="5" ry="4" fill="#c9a961" opacity="0.7"/>
+                        <ellipse cx="130" cy="90" rx="4" ry="3" fill="#c9a961" opacity="0.7"/>
+                        <ellipse cx="70" cy="100" rx="4" ry="3" fill="#c9a961" opacity="0.7"/>
+                        <circle cx="90" cy="95" r="1" fill="#5a4018"/>
+                        <circle cx="110" cy="105" r="1" fill="#5a4018"/>
+                        <circle cx="120" cy="93" r="1" fill="#5a4018"/>
+                        <path d="M50 145 Q100 155 150 145" stroke="#c9a961" stroke-width="0.6" fill="none" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="dish-body">
+                    <div class="dish-header">
+                        <h3 class="dish-name">Tortilla <em>Vagamente Cuajada</em></h3>
+                        <div class="dish-price">€8</div>
+                    </div>
+                    <p class="dish-desc">Onze legendarische tortilla — vanbuiten goudgeel, vanbinnen vloeibaar. Met gekarameliseerde uien.</p>
+                    <div class="dish-meta">
+                        <div class="dish-ingredients">Aardappel · ei · ui</div>
+                        <i class="ti ti-plus dish-arrow" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dish" data-category="zee" data-name="Gambas al Ajillo" data-price="11.0">
+                <div class="dish-visual">
+                    <div class="dish-number">N° 09</div>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="100" cy="110" rx="70" ry="35" fill="#1a1424" stroke="#c9a961" stroke-width="1"/>
+                        <ellipse cx="100" cy="105" rx="60" ry="25" fill="#a0492a" opacity="0.3"/>
+                        <path d="M70 100 Q80 95 90 100 L95 110 Q90 115 80 115 Q70 110 70 100 M70 100 L60 90" fill="#d4673a" stroke="#c9a961" stroke-width="0.8"/>
+                        <path d="M105 95 Q115 90 125 95 L130 105 Q125 110 115 110 Q105 105 105 95 M125 95 L135 85" fill="#d4673a" stroke="#c9a961" stroke-width="0.8"/>
+                        <path d="M85 115 Q95 110 105 115 L110 125 Q105 130 95 130 Q85 125 85 115 M85 115 L75 125" fill="#d4673a" stroke="#c9a961" stroke-width="0.8"/>
+                        <circle cx="78" cy="100" r="1" fill="#0a0d12"/>
+                        <circle cx="115" cy="98" r="1" fill="#0a0d12"/>
+                        <circle cx="93" cy="118" r="1" fill="#0a0d12"/>
+                        <ellipse cx="50" cy="95" rx="3" ry="2" fill="#f4ebd9" opacity="0.8"/>
+                        <ellipse cx="150" cy="115" rx="3" ry="2" fill="#f4ebd9" opacity="0.8"/>
+                        <ellipse cx="155" cy="90" rx="2" ry="1.5" fill="#f4ebd9" opacity="0.8"/>
+                    </svg>
+                </div>
+                <div class="dish-body">
+                    <div class="dish-header">
+                        <h3 class="dish-name">Gambas al <em>Ajillo</em></h3>
+                        <div class="dish-price">€11</div>
+                    </div>
+                    <p class="dish-desc">Wilde rode garnalen, kort gepocheerd in olijfolie met knoflook en cayenne. Brood om alles op te dippen.</p>
+                    <div class="dish-meta">
+                        <div class="dish-ingredients">Carabineros · knoflook · cayenne</div>
+                        <i class="ti ti-plus dish-arrow" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dish" data-category="groen" data-name="Piquillos Rellenos" data-price="9.5">
+                <div class="dish-visual">
+                    <div class="dish-number">N° 10</div>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M60 80 Q50 100 60 130 Q70 145 100 145 Q130 145 140 130 Q150 100 140 80 Q130 65 100 65 Q70 65 60 80 Z" fill="#a0492a" stroke="#c9a961" stroke-width="1.2"/>
+                        <ellipse cx="100" cy="105" rx="22" ry="25" fill="#f4ebd9" opacity="0.85"/>
+                        <ellipse cx="100" cy="105" rx="22" ry="25" fill="none" stroke="#c9a961" stroke-width="0.6"/>
+                        <circle cx="95" cy="100" r="2" fill="#5a4018"/>
+                        <circle cx="105" cy="108" r="1.5" fill="#5a4018"/>
+                        <circle cx="98" cy="115" r="1.5" fill="#5a4018"/>
+                        <path d="M95 55 Q100 45 105 55" stroke="#3a6024" stroke-width="2" fill="none"/>
+                        <ellipse cx="100" cy="55" rx="3" ry="2" fill="#3a6024"/>
+                        <path d="M40 155 Q100 165 160 155" stroke="#c9a961" stroke-width="0.8" fill="none" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="dish-body">
+                    <div class="dish-header">
+                        <h3 class="dish-name">Piquillos <em>Rellenos</em></h3>
+                        <div class="dish-price">€9.5</div>
+                    </div>
+                    <p class="dish-desc">Gegrilde Navarra piquillo pepers, gevuld met geitenkaas uit Idiazabal en honingnoten.</p>
+                    <div class="dish-meta">
+                        <div class="dish-ingredients">Piquillo · Idiazabal · honing</div>
+                        <i class="ti ti-plus dish-arrow" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dish" data-category="zee" data-name="Txangurro a la Donostiarra" data-price="16.0">
+                <div class="dish-visual">
+                    <div class="dish-number">N° 11</div>
+                    <div class="dish-tag">Signature</div>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="100" cy="110" rx="55" ry="40" fill="#a0492a" stroke="#c9a961" stroke-width="1.2"/>
+                        <ellipse cx="100" cy="100" rx="45" ry="30" fill="#d4673a" opacity="0.85"/>
+                        <path d="M55 100 L40 90 M55 105 L40 110 M145 100 L160 90 M145 105 L160 110" stroke="#a0492a" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M60 75 Q50 60 55 50 M75 70 Q70 55 78 45" stroke="#a0492a" stroke-width="2" fill="none"/>
+                        <path d="M140 75 Q150 60 145 50 M125 70 Q130 55 122 45" stroke="#a0492a" stroke-width="2" fill="none"/>
+                        <circle cx="85" cy="100" r="2" fill="#f4ebd9"/>
+                        <circle cx="115" cy="100" r="2" fill="#f4ebd9"/>
+                        <ellipse cx="80" cy="115" rx="3" ry="2" fill="#f4ebd9" opacity="0.6"/>
+                        <ellipse cx="120" cy="115" rx="3" ry="2" fill="#f4ebd9" opacity="0.6"/>
+                        <path d="M40 155 Q100 165 160 155" stroke="#c9a961" stroke-width="0.8" fill="none" opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="dish-body">
+                    <div class="dish-header">
+                        <h3 class="dish-name">Txangurro a la <em>Donostiarra</em></h3>
+                        <div class="dish-price">€16</div>
+                    </div>
+                    <p class="dish-desc">Spider-krab uit Getaria, ontleed en gegratineerd in zijn eigen schaal met tomaat en brandy.</p>
+                    <div class="dish-meta">
+                        <div class="dish-ingredients">Spider krab · tomaat · brandy</div>
+                        <i class="ti ti-plus dish-arrow" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </article>
+
+            <article class="dish" data-category="signature" data-name="Tarta de Queso" data-price="9.0">
+                <div class="dish-visual">
+                    <div class="dish-number">N° 12</div>
+                    <div class="dish-tag">Dessert</div>
+                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M60 90 L140 90 L130 150 L70 150 Z" fill="#e8c878" stroke="#a0492a" stroke-width="1.5"/>
+                        <ellipse cx="100" cy="90" rx="40" ry="8" fill="#5a2818"/>
+                        <ellipse cx="100" cy="88" rx="38" ry="6" fill="#a0492a" opacity="0.85"/>
+                        <ellipse cx="100" cy="86" rx="35" ry="4" fill="#d4673a" opacity="0.7"/>
+                        <path d="M70 100 L130 100" stroke="#c9a961" stroke-width="0.5" opacity="0.5"/>
+                        <path d="M72 110 L128 110" stroke="#c9a961" stroke-width="0.5" opacity="0.4"/>
+                        <path d="M74 120 L126 120" stroke="#c9a961" stroke-width="0.5" opacity="0.3"/>
+                        <circle cx="85" cy="84" r="1.5" fill="#0a0d12"/>
+                        <circle cx="110" cy="86" r="1.5" fill="#0a0d12"/>
+                        <circle cx="100" cy="83" r="1" fill="#0a0d12"/>
+                        <ellipse cx="60" cy="155" rx="20" ry="3" fill="#000" opacity="0.3"/>
+                        <ellipse cx="140" cy="155" rx="20" ry="3" fill="#000" opacity="0.3"/>
+                    </svg>
+                </div>
+                <div class="dish-body">
+                    <div class="dish-header">
+                        <h3 class="dish-name">Tarta de Queso <em>La Viña</em></h3>
+                        <div class="dish-price">€9</div>
+                    </div>
+                    <p class="dish-desc">De beroemde verbrande Baskische cheesecake. Vloeibaar van binnen, donker gekarameliseerd van boven.</p>
+                    <div class="dish-meta">
+                        <div class="dish-ingredients">Roomkaas · ei · suiker</div>
+                        <i class="ti ti-plus dish-arrow" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<section class="philosophy">
+    <div class="philosophy-bg"></div>
+    <div class="philosophy-quote reveal">
+        <i class="ti ti-quote" aria-hidden="true"></i>
+        Een pintxo is geen <em>hapje</em>. Het is een sonnet — drie regels lang, oneindig diep, geschreven met je handen.
+    </div>
+    <div class="philosophy-attr reveal">Sjoerd Verhagen · Chef</div>
+</section>
+
+<section id="experience" class="section experience">
+    <div class="section-inner">
+        <div class="reveal">
+            <div class="section-eyebrow">Chef's Table · Op uitnodiging</div>
+            <h2 class="section-title">De <em>menukaarten</em></h2>
+            <p class="section-lead">Vier vaste degustaties, elk een reis door een ander hoekje van Baskenland.</p>
+        </div>
+
+        <div class="exp-grid">
+            <div class="exp-cards">
+                <article class="exp-card reveal">
+                    <div class="exp-card-head">
+                        <h3 class="exp-card-name">Menu <em>Donostia</em></h3>
+                        <div class="exp-card-price">€85</div>
+                    </div>
+                    <p class="exp-card-desc">Onze klassieke route door de pintxo-bars van de Parte Vieja. Twaalf hapjes, drie wijnen, één onvergetelijke avond.</p>
+                    <div class="exp-card-courses">
+                        <span><i class="ti ti-circle-dot" aria-hidden="true"></i>12 pintxos</span>
+                        <span><i class="ti ti-glass-full" aria-hidden="true"></i>3 wijnen</span>
+                        <span><i class="ti ti-clock" aria-hidden="true"></i>2 uur</span>
+                    </div>
+                </article>
+
+                <article class="exp-card reveal">
+                    <div class="exp-card-head">
+                        <h3 class="exp-card-name">Menu <em>Getaria</em></h3>
+                        <div class="exp-card-price">€125</div>
+                    </div>
+                    <p class="exp-card-desc">Vis en zeevruchten, het verhaal van de kust. Met Txakoli pairing — de bruisende witte wijn die alleen daar groeit.</p>
+                    <div class="exp-card-courses">
+                        <span><i class="ti ti-circle-dot" aria-hidden="true"></i>9 gangen</span>
+                        <span><i class="ti ti-glass-full" aria-hidden="true"></i>5 wijnen</span>
+                        <span><i class="ti ti-clock" aria-hidden="true"></i>2.5 uur</span>
+                    </div>
+                </article>
+
+                <article class="exp-card reveal">
+                    <div class="exp-card-head">
+                        <h3 class="exp-card-name">Menu <em>Bilbao</em></h3>
+                        <div class="exp-card-price">€175</div>
+                    </div>
+                    <p class="exp-card-desc">Modern Baskisch — innovatie ontmoet traditie. De volledige expressie van onze keuken in vijftien gangen.</p>
+                    <div class="exp-card-courses">
+                        <span><i class="ti ti-circle-dot" aria-hidden="true"></i>15 gangen</span>
+                        <span><i class="ti ti-glass-full" aria-hidden="true"></i>8 wijnen</span>
+                        <span><i class="ti ti-clock" aria-hidden="true"></i>3 uur</span>
+                    </div>
+                </article>
+
+                <article class="exp-card reveal">
+                    <div class="exp-card-head">
+                        <h3 class="exp-card-name">Chef's <em>Table</em></h3>
+                        <div class="exp-card-price">€295</div>
+                    </div>
+                    <p class="exp-card-desc">Aan de pas, met Sjoerd zelf. Maximaal zes gasten. Het menu wordt die ochtend bepaald, op basis van de markt.</p>
+                    <div class="exp-card-courses">
+                        <span><i class="ti ti-circle-dot" aria-hidden="true"></i>20+ creaties</span>
+                        <span><i class="ti ti-glass-full" aria-hidden="true"></i>Sommelier</span>
+                        <span><i class="ti ti-clock" aria-hidden="true"></i>4 uur</span>
+                    </div>
+                </article>
+            </div>
+
+            <aside class="exp-info reveal">
+                <h3 class="exp-info-title">Goed om te weten</h3>
+                <ul class="exp-info-list">
+                    <li>Reservering <span>Verplicht</span></li>
+                    <li>Dresscode <span>Smart casual</span></li>
+                    <li>Kinderen <span>Vanaf 12 jaar</span></li>
+                    <li>Allergie <span>Op verzoek</span></li>
+                    <li>Vegetarisch <span>Volledig menu</span></li>
+                    <li>Annulering <span>48u vooraf</span></li>
+                </ul>
+            </aside>
+        </div>
+    </div>
+</section>
+
+<section class="gallery">
+    <div class="gallery-strip">
+        <div class="gallery-item" data-label="Cantabrische zee">
+            <svg viewBox="0 0 100 100"><path d="M10 60 Q30 40 50 60 T90 60" stroke="#c9a961" stroke-width="1.5" fill="none"/><path d="M10 70 Q30 50 50 70 T90 70" stroke="#c9a961" stroke-width="1.5" fill="none" opacity="0.6"/></svg>
+        </div>
+        <div class="gallery-item" data-label="Markt van Bilbao">
+            <svg viewBox="0 0 100 100"><circle cx="30" cy="50" r="15" fill="#c9a961" opacity="0.4"/><circle cx="60" cy="50" r="15" fill="#c9a961" opacity="0.6"/><circle cx="50" cy="70" r="10" fill="#c9a961" opacity="0.5"/></svg>
+        </div>
+        <div class="gallery-item" data-label="Olijfolie uit Andalusië">
+            <svg viewBox="0 0 100 100"><path d="M50 20 L60 60 L40 60 Z" fill="#c9a961" opacity="0.5"/><ellipse cx="50" cy="70" rx="20" ry="10" fill="#c9a961" opacity="0.3"/></svg>
+        </div>
+        <div class="gallery-item" data-label="Houtskoolgrill">
+            <svg viewBox="0 0 100 100"><path d="M50 30 Q40 50 50 70 Q60 50 50 30" fill="#a0492a" opacity="0.7"/><path d="M50 30 Q40 50 50 70 Q60 50 50 30" stroke="#c9a961" stroke-width="1" fill="none"/></svg>
+        </div>
+        <div class="gallery-item" data-label="Cantabrische zee">
+            <svg viewBox="0 0 100 100"><path d="M10 60 Q30 40 50 60 T90 60" stroke="#c9a961" stroke-width="1.5" fill="none"/><path d="M10 70 Q30 50 50 70 T90 70" stroke="#c9a961" stroke-width="1.5" fill="none" opacity="0.6"/></svg>
+        </div>
+        <div class="gallery-item" data-label="Markt van Bilbao">
+            <svg viewBox="0 0 100 100"><circle cx="30" cy="50" r="15" fill="#c9a961" opacity="0.4"/><circle cx="60" cy="50" r="15" fill="#c9a961" opacity="0.6"/><circle cx="50" cy="70" r="10" fill="#c9a961" opacity="0.5"/></svg>
+        </div>
+        <div class="gallery-item" data-label="Olijfolie uit Andalusië">
+            <svg viewBox="0 0 100 100"><path d="M50 20 L60 60 L40 60 Z" fill="#c9a961" opacity="0.5"/><ellipse cx="50" cy="70" rx="20" ry="10" fill="#c9a961" opacity="0.3"/></svg>
+        </div>
+        <div class="gallery-item" data-label="Houtskoolgrill">
+            <svg viewBox="0 0 100 100"><path d="M50 30 Q40 50 50 70 Q60 50 50 30" fill="#a0492a" opacity="0.7"/><path d="M50 30 Q40 50 50 70 Q60 50 50 30" stroke="#c9a961" stroke-width="1" fill="none"/></svg>
+        </div>
+    </div>
+</section>
+
+<section id="reviews" class="section reviews">
+    <div class="section-inner">
+        <div class="reviews-header">
+            <div class="reveal">
+                <div class="section-eyebrow">Pers · Gasten · Critici</div>
+                <h2 class="section-title">Wat men over <em>Sjoerd</em> zegt</h2>
+            </div>
+            <div class="review-controls reveal">
+                <button class="review-btn review-prev" aria-label="vorige">
+                    <i class="ti ti-arrow-left" aria-hidden="true"></i>
+                </button>
+                <button class="review-btn review-next" aria-label="volgende">
+                    <i class="ti ti-arrow-right" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="reviews-track"></div>
+    </div>
+</section>
+
+<section id="contact" class="section contact">
+    <div class="section-inner">
+        <div class="reveal">
+            <div class="section-eyebrow">Contact · Reserveren</div>
+            <h2 class="section-title">Boek uw <em>avond</em></h2>
+            <p class="section-lead">Tafels worden gereserveerd in twee shifts. We bevestigen binnen 24 uur.</p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-details reveal">
+                <div class="contact-info-block">
+                    <div class="contact-info-label"><i class="ti ti-map-pin" aria-hidden="true"></i> Adres</div>
+                    <div class="contact-info-value">Gasthuisplein 8<br>3511 BZ Utrecht</div>
+                </div>
+
+                <div class="contact-info-block">
+                    <div class="contact-info-label"><i class="ti ti-clock" aria-hidden="true"></i> Openingstijden</div>
+                    <div class="contact-info-value">Woensdag t/m zaterdag<br>17.30 — 23.00 uur</div>
+                </div>
+
+                <div class="contact-info-block">
+                    <div class="contact-info-label"><i class="ti ti-phone" aria-hidden="true"></i> Telefoon</div>
+                    <div class="contact-info-value"><a href="tel:+31301234567">+31 30 123 45 67</a></div>
+                </div>
+
+                <div class="contact-info-block">
+                    <div class="contact-info-label"><i class="ti ti-mail" aria-hidden="true"></i> Email</div>
+                    <div class="contact-info-value"><a href="mailto:reserveer@sjoerd.nl">reserveer@sjoerd.nl</a></div>
+                </div>
+            </div>
+
+            <div class="contact-form reveal">
+                <h3 class="form-title">Reserveer een tafel</h3>
+                <p class="form-subtitle">Voor parties &gt; 8 personen, bel ons direct.</p>
+
+                <form>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="name">Naam</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="phone">Telefoon</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="date">Datum</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="time">Tijd</label>
+                            <select id="time" name="time" required>
+                                <option value="18:00">18.00 uur</option>
+                                <option value="18:30">18.30 uur</option>
+                                <option value="19:00">19.00 uur</option>
+                                <option value="20:30">20.30 uur</option>
+                                <option value="21:00">21.00 uur</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="guests">Aantal gasten</label>
+                        <select id="guests" name="guests" required>
+                            <option value="2">2 personen</option>
+                            <option value="3">3 personen</option>
+                            <option value="4">4 personen</option>
+                            <option value="5">5 personen</option>
+                            <option value="6">6 personen</option>
+                            <option value="7">7 personen</option>
+                            <option value="8">8 personen</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="note">Bijzonderheden (allergie, gelegenheid)</label>
+                        <textarea id="note" name="note"></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit">Verstuur aanvraag</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-mark">SJOERD</div>
+    <div class="footer-tag">Baskische pintxos · Utrecht · Sinds 2018</div>
+
+    <div class="footer-social">
+        <a href="#" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i class="ti ti-brand-facebook"></i></a>
+        <a href="#" aria-label="YouTube"><i class="ti ti-brand-youtube"></i></a>
+        <a href="#" aria-label="TripAdvisor"><i class="ti ti-map-2"></i></a>
+    </div>
+
+    <div class="footer-bottom">© 2026 Restaurant Sjoerd · Alle rechten voorbehouden</div>
+
+    <div class="pp-stamp">
+        <div class="pp-stamp-mark">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30 25 L30 75 M30 25 L55 25 Q70 25 70 40 Q70 55 55 55 L30 55" stroke="#c9a961" stroke-width="3" fill="none" stroke-linecap="square"/>
+                <path d="M30 50 L55 50 Q70 50 70 65 Q70 80 55 80 L30 80" stroke="#c9a961" stroke-width="3" fill="none" stroke-linecap="square" opacity="0.9"/>
+                <rect x="20" y="20" width="6" height="6" fill="#c9a961"/>
+                <rect x="74" y="74" width="6" height="6" fill="#c9a961"/>
+            </svg>
+        </div>
+        <div class="pp-stamp-text">
+            Een schip uit het werf van<strong>Pixel Piraterij</strong>
+        </div>
+    </div>
+</footer>
+
+<div class="cart-fab" aria-label="Winkelwagen openen">
+    <i class="ti ti-shopping-bag"></i>
+    <span class="cart-count">0</span>
+</div>
+
+<aside class="cart-panel" aria-label="Winkelwagen">
+    <div class="cart-head">
+        <div class="cart-title">Uw bestelling</div>
+        <button class="cart-close" aria-label="Sluit winkelwagen"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="cart-items"></div>
+    <div class="cart-foot">
+        <div class="cart-total">
+            <span class="cart-total-label">Totaal</span>
+            <span class="cart-total-value">€0.00</span>
+        </div>
+        <button class="cart-checkout">Bestelling plaatsen</button>
+    </div>
+</aside>
+
+<div class="cart-backdrop"></div>
+
+<div class="toast">
+    <i class="ti ti-check" aria-hidden="true"></i>
+    <span class="toast-text"></span>
+</div>
+
+<script>
+/* ============================================
+   SJOERD — Interactive Engine
+   ============================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // ============================================
+    // LOADING SCREEN
+    // ============================================
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.querySelector('.loader').classList.add('hidden');
+        }, 2000);
+    });
+
+    // ============================================
+    // CUSTOM CURSOR
+    // ============================================
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorRing = document.querySelector('.cursor-ring');
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursorDot.style.left = mouseX + 'px';
+        cursorDot.style.top = mouseY + 'px';
+    });
+
+    function animateCursor() {
+        ringX += (mouseX - ringX) * 0.15;
+        ringY += (mouseY - ringY) * 0.15;
+        cursorRing.style.left = ringX + 'px';
+        cursorRing.style.top = ringY + 'px';
+        requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    document.querySelectorAll('a, button, .dish, .filter, .exp-card, .review, .gallery-item').forEach(el => {
+        el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
+        el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
+    });
+
+    // ============================================
+    // STARFIELD
+    // ============================================
+    const starsContainer = document.querySelector('.hero-stars');
+    if (starsContainer) {
+        for (let i = 0; i < 80; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 2 + 0.5;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 4 + 's';
+            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            starsContainer.appendChild(star);
+        }
+    }
+
+    // ============================================
+    // PARALLAX SCROLLING
+    // ============================================
+    const heroLayers = document.querySelectorAll('.hero-layer');
+    const philosophyBg = document.querySelector('.philosophy-bg');
+
+    function handleParallax() {
+        const scrollY = window.scrollY;
+
+        heroLayers.forEach((layer, i) => {
+            const speed = (i + 1) * 0.15;
+            layer.style.transform = `translateY(${scrollY * speed}px)`;
+        });
+
+        const hero = document.querySelector('.hero');
+        if (hero) {
+            const heroContent = hero.querySelector('.hero-content');
+            const heroHeight = hero.offsetHeight;
+            const opacity = Math.max(0, 1 - (scrollY / (heroHeight * 0.7)));
+            const translateY = scrollY * 0.3;
+            heroContent.style.opacity = opacity;
+            heroContent.style.transform = `translateY(${translateY}px)`;
+        }
+
+        if (philosophyBg) {
+            const philosophy = document.querySelector('.philosophy');
+            const rect = philosophy.getBoundingClientRect();
+            const offset = (window.innerHeight - rect.top) * 0.3;
+            philosophyBg.style.transform = `translateY(${offset}px)`;
+        }
+
+        document.querySelectorAll('.story-image, .dish-visual').forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const inView = rect.top < window.innerHeight && rect.bottom > 0;
+            if (inView) {
+                const moveAmount = (window.innerHeight - rect.top) * 0.05;
+                const inner = el.querySelector('svg');
+                if (inner) inner.style.transform = `translateY(${-moveAmount}px)`;
+            }
+        });
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                handleParallax();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    // ============================================
+    // NAVIGATION SCROLL STATE
+    // ============================================
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 80) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+
+    // ============================================
+    // MOBILE MENU
+    // ============================================
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMobile = document.querySelector('.nav-mobile');
+    if (navToggle) {
+        navToggle.addEventListener('click', () => {
+            navMobile.classList.toggle('open');
+        });
+        document.querySelectorAll('.nav-mobile a').forEach(a => {
+            a.addEventListener('click', () => navMobile.classList.remove('open'));
+        });
+    }
+
+    // ============================================
+    // SCROLL REVEAL
+    // ============================================
+    const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => revealObserver.observe(el));
+
+    // ============================================
+    // DISH STAGGER REVEAL
+    // ============================================
+    const dishObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => entry.target.classList.add('visible'), i * 60);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.dish').forEach(dish => dishObserver.observe(dish));
+
+    // ============================================
+    // MENU FILTERS
+    // ============================================
+    const filters = document.querySelectorAll('.filter');
+    const dishes = document.querySelectorAll('.dish');
+
+    filters.forEach(filter => {
+        filter.addEventListener('click', () => {
+            filters.forEach(f => f.classList.remove('active'));
+            filter.classList.add('active');
+
+            const category = filter.dataset.filter;
+            dishes.forEach((dish, i) => {
+                const matches = category === 'all' || dish.dataset.category === category;
+                if (matches) {
+                    dish.style.display = 'block';
+                    setTimeout(() => {
+                        dish.style.opacity = '1';
+                        dish.style.transform = 'translateY(0)';
+                    }, i * 50);
+                } else {
+                    dish.style.opacity = '0';
+                    dish.style.transform = 'translateY(20px)';
+                    setTimeout(() => { dish.style.display = 'none'; }, 300);
+                }
+            });
+        });
+    });
+
+    // ============================================
+    // CART SYSTEM
+    // ============================================
+    const cart = {
+        items: [],
+        async load() {
+            try {
+                const r = await window.storage?.get('cart');
+                if (r && r.value) this.items = JSON.parse(r.value);
+            } catch (e) {}
+            this.render();
+        },
+        async save() {
+            try {
+                await window.storage?.set('cart', JSON.stringify(this.items));
+            } catch (e) {}
+        },
+        add(name, price) {
+            const existing = this.items.find(i => i.name === name);
+            if (existing) {
+                existing.qty++;
+            } else {
+                this.items.push({ name, price, qty: 1 });
+            }
+            this.save();
+            this.render();
+            this.flash();
+            showToast(`${name} toegevoegd`);
+        },
+        remove(name) {
+            this.items = this.items.filter(i => i.name !== name);
+            this.save();
+            this.render();
+        },
+        changeQty(name, delta) {
+            const item = this.items.find(i => i.name === name);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) this.remove(name);
+            else { this.save(); this.render(); }
+        },
+        total() {
+            return this.items.reduce((sum, i) => sum + i.price * i.qty, 0);
+        },
+        count() {
+            return this.items.reduce((sum, i) => sum + i.qty, 0);
+        },
+        flash() {
+            const fab = document.querySelector('.cart-fab');
+            fab.style.transform = 'scale(1.3)';
+            setTimeout(() => fab.style.transform = '', 200);
+        },
+        render() {
+            const count = this.count();
+            const countEl = document.querySelector('.cart-count');
+            const fab = document.querySelector('.cart-fab');
+
+            if (count > 0) {
+                fab.classList.add('visible');
+                countEl.textContent = count;
+                countEl.style.display = 'flex';
+            } else {
+                countEl.style.display = 'none';
+                if (!document.querySelector('.cart-panel.open')) {
+                    fab.classList.remove('visible');
+                }
+            }
+
+            const list = document.querySelector('.cart-items');
+            if (this.items.length === 0) {
+                list.innerHTML = '<div class="cart-empty">Uw selectie wacht</div>';
+            } else {
+                list.innerHTML = this.items.map(i => `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${i.name}</div>
+                            <div class="cart-item-price">€${i.price.toFixed(2)} × ${i.qty}</div>
+                        </div>
+                        <div class="cart-qty">
+                            <button onclick="cart.changeQty('${i.name}', -1)" aria-label="minder">−</button>
+                            <span>${i.qty}</span>
+                            <button onclick="cart.changeQty('${i.name}', 1)" aria-label="meer">+</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            document.querySelector('.cart-total-value').textContent = '€' + this.total().toFixed(2);
+        }
+    };
+    window.cart = cart;
+    cart.load();
+
+    // Add to cart buttons (via event delegation)
+    document.addEventListener('click', (e) => {
+        const dish = e.target.closest('.dish');
+        if (!dish) return;
+        const name = dish.dataset.name;
+        const price = parseFloat(dish.dataset.price);
+        if (name && price) cart.add(name, price);
+    });
+
+    // Cart panel toggle
+    const cartFab = document.querySelector('.cart-fab');
+    const cartPanel = document.querySelector('.cart-panel');
+    const cartBackdrop = document.querySelector('.cart-backdrop');
+    const cartClose = document.querySelector('.cart-close');
+
+    function openCart() {
+        cartPanel.classList.add('open');
+        cartBackdrop.classList.add('visible');
+    }
+    function closeCart() {
+        cartPanel.classList.remove('open');
+        cartBackdrop.classList.remove('visible');
+        if (cart.count() === 0) cartFab.classList.remove('visible');
+    }
+    cartFab.addEventListener('click', openCart);
+    cartClose.addEventListener('click', closeCart);
+    cartBackdrop.addEventListener('click', closeCart);
+
+    document.querySelector('.cart-checkout').addEventListener('click', () => {
+        if (cart.items.length === 0) {
+            showToast('Voeg eerst gerechten toe');
+            return;
+        }
+        showToast(`Bestelling van €${cart.total().toFixed(2)} ontvangen. Sjoerd belt u binnen 30 minuten terug.`);
+        cart.items = [];
+        cart.save();
+        cart.render();
+        setTimeout(closeCart, 1500);
+    });
+
+    // ============================================
+    // TOAST NOTIFICATIONS
+    // ============================================
+    let toastTimeout;
+    function showToast(message) {
+        const toast = document.querySelector('.toast');
+        toast.querySelector('.toast-text').textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+    window.showToast = showToast;
+
+    // ============================================
+    // RESERVATION FORM
+    // ============================================
+    const form = document.querySelector('.contact-form form');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const data = new FormData(form);
+            const name = data.get('name');
+            const date = data.get('date');
+            const time = data.get('time');
+            const guests = data.get('guests');
+            showToast(`Bedankt ${name}! Reservering voor ${guests} personen op ${date} om ${time} ontvangen.`);
+            form.reset();
+        });
+    }
+
+    // ============================================
+    // REVIEWS NAVIGATION
+    // ============================================
+    const reviewsTrack = document.querySelector('.reviews-track');
+    const reviews = [
+        {
+            stars: 5,
+            text: 'Een Michelin-waardige avond. Sjoerd bewijst dat Baskische keuken meer is dan smaak — het is poëzie op een lepel.',
+            avatar: 'MV',
+            name: 'Maria Visser',
+            meta: 'Utrecht · culinair criticus'
+        },
+        {
+            stars: 5,
+            text: 'De beste pintxos die ik ooit buiten Donostia heb geproefd. De pulpo a la gallega was een openbaring.',
+            avatar: 'RB',
+            name: 'Roberto Etxeberria',
+            meta: 'Bilbao · gast'
+        },
+        {
+            stars: 5,
+            text: 'Sterren restaurant Sjoerd is een serieuze culinaire bestemming. Elk detail klopt — van het servies tot de wijnpairing.',
+            avatar: 'EP',
+            name: 'Elena Pérez',
+            meta: 'Amsterdam · sommelier'
+        },
+        {
+            stars: 5,
+            text: 'Drie uur lang zat ik met open mond. Dit is geen restaurant, dit is een ervaring die je leven verandert.',
+            avatar: 'JK',
+            name: 'Jos Kempers',
+            meta: 'Rotterdam · gast'
+        },
+        {
+            stars: 5,
+            text: 'De aandacht voor ingrediënten is bijna religieus. Sjoerd reist persoonlijk naar Baskenland voor zijn jamón.',
+            avatar: 'LS',
+            name: 'Lise Snoeck',
+            meta: 'Gent · food blogger'
+        },
+        {
+            stars: 5,
+            text: 'Ik kom hier elke maand. Het verveelt nooit. Hun seizoensmenu is ronduit briljant.',
+            avatar: 'PM',
+            name: 'Paul Molenaar',
+            meta: 'Tiel · vaste gast'
+        }
+    ];
+
+    let reviewPage = 0;
+    const perPage = 3;
+
+    function renderReviews() {
+        const start = reviewPage * perPage;
+        const slice = reviews.slice(start, start + perPage);
+        reviewsTrack.style.opacity = '0';
+        setTimeout(() => {
+            reviewsTrack.innerHTML = slice.map(r => `
+                <div class="review">
+                    <div class="review-quote-mark">"</div>
+                    <div class="review-stars">${'★'.repeat(r.stars)}</div>
+                    <p class="review-text">${r.text}</p>
+                    <div class="review-author">
+                        <div class="review-avatar">${r.avatar}</div>
+                        <div>
+                            <div class="review-name">${r.name}</div>
+                            <div class="review-meta">${r.meta}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            reviewsTrack.style.opacity = '1';
+        }, 250);
+    }
+
+    document.querySelector('.review-prev')?.addEventListener('click', () => {
+        reviewPage = (reviewPage - 1 + Math.ceil(reviews.length / perPage)) % Math.ceil(reviews.length / perPage);
+        renderReviews();
+    });
+    document.querySelector('.review-next')?.addEventListener('click', () => {
+        reviewPage = (reviewPage + 1) % Math.ceil(reviews.length / perPage);
+        renderReviews();
+    });
+    renderReviews();
+
+    // ============================================
+    // SMOOTH SCROLL FOR ANCHORS
+    // ============================================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                const top = target.offsetTop - 70;
+                window.scrollTo({ top, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // ============================================
+    // STAT COUNTERS
+    // ============================================
+    const statObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const target = parseInt(el.dataset.target);
+                if (!target || el.dataset.animated) return;
+                el.dataset.animated = 'true';
+                let current = 0;
+                const step = target / 50;
+                const timer = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    el.textContent = Math.round(current) + (el.dataset.suffix || '');
+                }, 30);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stat-num[data-target]').forEach(el => statObserver.observe(el));
+});
+
+</script>
+
+</body>
+</html>
